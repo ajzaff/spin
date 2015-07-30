@@ -1,0 +1,8 @@
+VERBS
+  cache                     UNLOADS the node to other peers
+ARGUMENTS
+  -u, --rurl=URL            REFERER url e.g. example.com
+  -p, --rport=PORT          REFERER port number e.g. 9000
+OPTIONS
+  -v, --verbose             Debugs nearly everything
+  -h, --help                Prints this help
