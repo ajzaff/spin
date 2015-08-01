@@ -1,0 +1,45 @@
+.TH "src/include/error.h" 3 "Fri Jul 31 2015" "Version 0.1.0-SNAPSHOT" "SPIN Framework" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/include/error.h \- 
+.PP
+Cross-platform error logging utilities\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "char * \fBstderror\fP (char *buf)"
+.br
+.RI "\fIGets a message string corresponding to the current set error number \fCerrno\fP on *NIX\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Cross-platform error logging utilities\&. 
+
+
+.PP
+Definition in file \fBerror\&.h\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "char* stderror (char *buf)"
+
+.PP
+Gets a message string corresponding to the current set error number \fCerrno\fP on *NIX\&. \fBParameters:\fP
+.RS 4
+\fIbuf\fP a string buffer to contain the message 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the error message 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for SPIN Framework from the source code\&.
