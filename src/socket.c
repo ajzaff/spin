@@ -21,25 +21,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
-\file options.h
-\brief Interfaces for long and short command-line arguments
+\file socket.c
+\brief Implements cross-patform socket connections
 */
 
-#ifndef _SPINXPI_OPTIONS_H
-#define _SPINXPI_OPTIONS_H
+#include "include/socket.h"
+#include "include/error.h"
+#include <sys/socket.h>
 
-#include <getopt.h>
-
-/**
- * @brief A structure containing option flags to be set by long and short options
- */
-extern typedef struct SPINXPI_OPTS SPINXPI_OPTS;
-
-/**
- * @brief A structure containing all long options
- * 
- * This structure must be terminated with a 0-row (i.e. `{0,0,0,0}`).
- */
-extern struct option long_options[];
-
-#endif /* _SPINXPI_OPTIONS_H */
+SPINXPI_SOCK socket(SPINXPI_SOCK * sock) {
+  if(sock == NULL) {
+    sock = (SPINXPI_SOCK *)malloc(sizeof(SPINXPI_SOCK));
+  }
+  if((sock.fd=socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
+    char * err = stderror("", NULL);
+    free(err);
+    exit(0);
+  }
+}

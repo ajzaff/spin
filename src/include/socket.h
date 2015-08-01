@@ -25,19 +25,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \brief Interface for cross-patform socket connections
 */
 
-#ifndef _SPINXPI_SOCKET_H_
-#define _SPINXPI_SOCKET_H_
+#ifndef _SPINXPI_SOCKET_H
+#define _SPINXPI_SOCKET_H
 
 #include "types.h"
-
-#include <sys/socket.h>
-#include <sys/types.h>
 
 /**
  * @brief Contains a socket connection inforation.
  */
 typedef struct SPINXPI_SOCKADDR {
-	char * host; /**< @brief The host name for this socket */
+  char * host; /**< @brief The host name for this socket */
   int port; /**< @brief The port number to bind this socket */
 } SPINXPI_SOCKADDR;
 
@@ -45,7 +42,7 @@ typedef struct SPINXPI_SOCKADDR {
  * @brief Contains a socket inforation.
  */
 typedef struct SPINXPI_SOCK {
-	int sockfd; /**< @brief A file descriptor for this socket */
+  int fd; /**< @brief A file descriptor for this socket */
 } SPINXPI_SOCK;
 
 /**
@@ -85,4 +82,4 @@ SPINXPI_SOCK * accept(SPINXPI_SOCK * sock, SPINXPI_SOCKADDR * cli_addr);
  */
 SPINXPI_RESULT close(SPINXPI_SOCK * sock);
 
-#endif /* _SPINXPI_SOCKET_H_ */
+#endif /* _SPINXPI_SOCKET_H */

@@ -25,8 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 @brief Interface for cross-platform string utilities.
 */
 
-#ifndef _SPINXPI_STRINGS_H_
-#define _SPINXPI_STRINGS_H_
+#ifndef _SPINXPI_STRINGS_H
+#define _SPINXPI_STRINGS_H
 
 #include <string.h>
 
@@ -37,4 +37,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 int strlen(char * str);
 
-#endif /* _SPINXPI_STRINGS_H_
+#endif /* _SPINXPI_STRINGS_H */

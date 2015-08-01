@@ -25,23 +25,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \brief Defines commonly used type names, enums, includes system types when needed
 */
 
-#ifndef _SPINXPI_TYPES_H_
-#define _SPINXPI_TYPES_H_
+#ifndef _SPINXPI_TYPES_H
+#define _SPINXPI_TYPES_H
 
 /**
  * @brief A POSIX style return value with 0 bound to success, -1 to failure.
  */
 typedef enum SPINXPI_RESULT {
-	SPINXPI_FAIL = -1, /**< @brief A result value constant meaning "failure" */
-	SPINXPI_OK = 0 /**< @brief A result value constant meaning "no error" */
+  SPINXPI_FAIL = -1, /**< @brief A result value constant meaning "failure" */
+  SPINXPI_OK = 0 /**< @brief A result value constant meaning "no error" */
 } SPINXPI_RESULT;
 
 /**
  * @brief A boolean type modelled after standard libraries
  */
 typedef enum SPINXPI_BOOL {
-	SPINXPI_FALSE = 0, /**< @brief A constant corresponding to boolean `false` */
-	SPINXPI_TRUE = 1 /**< @brief A constant corresponsing to boolean `true` */
+  SPINXPI_FALSE = 0, /**< @brief A constant corresponding to boolean `false` */
+  SPINXPI_TRUE = 1 /**< @brief A constant corresponsing to boolean `true` */
 } SPINXPI_BOOL;
 
-#endif /* _SPINXPI_TYPES_H_ */
+#endif /* _SPINXPI_TYPES_H */

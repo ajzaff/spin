@@ -25,12 +25,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 \brief Interface for supported commands
 */
 
-#ifndef _SPINXPI_VERBS_H_
-#define _SPINXPI_VERBS_H_
+#ifndef _SPINXPI_VERBS_H
+#define _SPINXPI_VERBS_H
 
 /**
  * @brief A structure containing verb flags to be implemented
  */
 extern typedef struct SPINXPI_VERBS SPINXPI_VERBS;
 
-#endif /* _SPINXPI_VERBS_H_ */
+#endif /* _SPINXPI_VERBS_H */
