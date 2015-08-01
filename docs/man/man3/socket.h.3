@@ -1,0 +1,162 @@
+.TH "src/include/socket.h" 3 "Fri Jul 31 2015" "Version 0.1.0-SNAPSHOT" "SPIN Framework" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/include/socket.h \- 
+.PP
+Interface for cross-patform socket connections\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'types\&.h'\fP
+.br
+\fC#include <sys/socket\&.h>\fP
+.br
+\fC#include <sys/types\&.h>\fP
+.br
+
+.SS "Data Structures"
+
+.in +1c
+.ti -1c
+.RI "struct \fBSPINXPI_SOCKADDR\fP"
+.br
+.RI "\fIContains a socket connection inforation\&. \fP"
+.ti -1c
+.RI "struct \fBSPINXPI_SOCK\fP"
+.br
+.RI "\fIContains a socket inforation\&. \fP"
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct \fBSPINXPI_SOCKADDR\fP \fBSPINXPI_SOCKADDR\fP"
+.br
+.RI "\fIContains a socket connection inforation\&. \fP"
+.ti -1c
+.RI "typedef struct \fBSPINXPI_SOCK\fP \fBSPINXPI_SOCK\fP"
+.br
+.RI "\fIContains a socket inforation\&. \fP"
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSPINXPI_SOCK\fP * \fBsocket\fP (\fBSPINXPI_SOCK\fP *sock)"
+.br
+.RI "\fICreates a new socket connection\&. \fP"
+.ti -1c
+.RI "\fBSPINXPI_RESULT\fP \fBbind\fP (\fBSPINXPI_SOCK\fP *sock, \fBSPINXPI_SOCKADDR\fP *addr)"
+.br
+.RI "\fIBinds a new socket connection\&. \fP"
+.ti -1c
+.RI "\fBSPINXPI_RESULT\fP \fBlisten\fP (\fBSPINXPI_SOCK\fP *sock)"
+.br
+.RI "\fIMarks the socket as a listener\&. \fP"
+.ti -1c
+.RI "\fBSPINXPI_SOCK\fP * \fBaccept\fP (\fBSPINXPI_SOCK\fP *sock, \fBSPINXPI_SOCKADDR\fP *cli_addr)"
+.br
+.RI "\fIAccepts client connections to \fCsock\fP via the client address \fCcli_addr\fP \fP"
+.ti -1c
+.RI "\fBSPINXPI_RESULT\fP \fBclose\fP (\fBSPINXPI_SOCK\fP *sock)"
+.br
+.RI "\fICloses the given socket\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Interface for cross-patform socket connections\&. 
+
+
+.PP
+Definition in file \fBsocket\&.h\fP\&.
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef struct \fBSPINXPI_SOCK\fP  \fBSPINXPI_SOCK\fP"
+
+.PP
+Contains a socket inforation\&. 
+.SS "typedef struct \fBSPINXPI_SOCKADDR\fP  \fBSPINXPI_SOCKADDR\fP"
+
+.PP
+Contains a socket connection inforation\&. 
+.SH "Function Documentation"
+.PP 
+.SS "\fBSPINXPI_SOCK\fP* accept (\fBSPINXPI_SOCK\fP *sock, \fBSPINXPI_SOCKADDR\fP *cli_addr)"
+
+.PP
+Accepts client connections to \fCsock\fP via the client address \fCcli_addr\fP \fBParameters:\fP
+.RS 4
+\fIsock\fP a socket instance 
+.br
+\fIcli_addr\fP a client address 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the accepted socket or \fCNULL\fP, sets \fCerrno\fP 
+.RE
+.PP
+
+.SS "\fBSPINXPI_RESULT\fP bind (\fBSPINXPI_SOCK\fP *sock, \fBSPINXPI_SOCKADDR\fP *addr)"
+
+.PP
+Binds a new socket connection\&. \fBParameters:\fP
+.RS 4
+\fIsock\fP a socket connection instance 
+.br
+\fIaddr\fP a socket address to bind to 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fCsock\fP; otherwise NULL on failure 
+.RE
+.PP
+
+.SS "\fBSPINXPI_RESULT\fP close (\fBSPINXPI_SOCK\fP *sock)"
+
+.PP
+Closes the given socket\&. \fBParameters:\fP
+.RS 4
+\fIsock\fP a socket instance 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+0 on success, -1 on failure, \fCerrno\fP set 
+.RE
+.PP
+
+.SS "\fBSPINXPI_RESULT\fP listen (\fBSPINXPI_SOCK\fP *sock)"
+
+.PP
+Marks the socket as a listener\&. \fBParameters:\fP
+.RS 4
+\fIsock\fP a socket instance 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fCsock\fP; otherwise NULL on failure, sets \fCerrno\fP 
+.RE
+.PP
+
+.SS "\fBSPINXPI_SOCK\fP* socket (\fBSPINXPI_SOCK\fP *sock)"
+
+.PP
+Creates a new socket connection\&. \fBParameters:\fP
+.RS 4
+\fIsock\fP a socket connection object, or NULL 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+\fCsock\fP or NULL on failure 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for SPIN Framework from the source code\&.

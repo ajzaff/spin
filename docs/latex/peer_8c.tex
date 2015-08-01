@@ -1,0 +1,107 @@
+\hypertarget{peer_8c}{\section{src/peer.c File Reference}
+\label{peer_8c}\index{src/peer.\-c@{src/peer.\-c}}
+}
+{\ttfamily \#include $<$strings.\-h$>$}\\*
+{\ttfamily \#include $<$string.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$getopt.\-h$>$}\\*
+{\ttfamily \#include $<$pthread.\-h$>$}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structt__verbs}{t\-\_\-verbs}
+\item 
+struct \hyperlink{structt__opts}{t\-\_\-opts}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{peer_8c_a7e97785d4ad5e5b328c695afca571be0}{print\-\_\-help} (char $\ast$$\ast$, struct \hyperlink{structt__verbs}{t\-\_\-verbs} $\ast$)
+\item 
+void \hyperlink{peer_8c_a6302aaae12249e8ea16bfdc7de892f21}{print\-\_\-version} ()
+\item 
+void \hyperlink{peer_8c_a4a70a1327d0ff56d14c6b256d1f5678e}{print\-\_\-usage} (char $\ast$$\ast$, struct \hyperlink{structt__verbs}{t\-\_\-verbs} $\ast$, int)
+\item 
+void \hyperlink{peer_8c_a3c86c3f2282efeae890660c76a81075c}{print\-\_\-suggest\-\_\-help} (char $\ast$$\ast$)
+\item 
+void \hyperlink{peer_8c_a8abad6ba2ae2a3a1da13002032839363}{consume\-\_\-args} (struct \hyperlink{structt__opts}{t\-\_\-opts} $\ast$, struct \hyperlink{structt__verbs}{t\-\_\-verbs} $\ast$, int, char $\ast$$\ast$)
+\item 
+int \hyperlink{peer_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{peer_8c_a8abad6ba2ae2a3a1da13002032839363}{\index{peer.\-c@{peer.\-c}!consume\-\_\-args@{consume\-\_\-args}}
+\index{consume\-\_\-args@{consume\-\_\-args}!peer.c@{peer.\-c}}
+\subsubsection[{consume\-\_\-args}]{\setlength{\rightskip}{0pt plus 5cm}void consume\-\_\-args (
+\begin{DoxyParamCaption}
+\item[{struct {\bf t\-\_\-opts} $\ast$}]{o\-\_\-flags, }
+\item[{struct {\bf t\-\_\-verbs} $\ast$}]{v\-\_\-flags, }
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{peer_8c_a8abad6ba2ae2a3a1da13002032839363}
+
+
+Definition at line 147 of file peer.\-c.
+
+\hypertarget{peer_8c_a3c04138a5bfe5d72780bb7e82a18e627}{\index{peer.\-c@{peer.\-c}!main@{main}}
+\index{main@{main}!peer.c@{peer.\-c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{peer_8c_a3c04138a5bfe5d72780bb7e82a18e627}
+
+
+Definition at line 25 of file peer.\-c.
+
+\hypertarget{peer_8c_a7e97785d4ad5e5b328c695afca571be0}{\index{peer.\-c@{peer.\-c}!print\-\_\-help@{print\-\_\-help}}
+\index{print\-\_\-help@{print\-\_\-help}!peer.c@{peer.\-c}}
+\subsubsection[{print\-\_\-help}]{\setlength{\rightskip}{0pt plus 5cm}void print\-\_\-help (
+\begin{DoxyParamCaption}
+\item[{char $\ast$$\ast$}]{argv, }
+\item[{struct {\bf t\-\_\-verbs} $\ast$}]{v\-\_\-flags}
+\end{DoxyParamCaption}
+)}}\label{peer_8c_a7e97785d4ad5e5b328c695afca571be0}
+
+
+Definition at line 84 of file peer.\-c.
+
+\hypertarget{peer_8c_a3c86c3f2282efeae890660c76a81075c}{\index{peer.\-c@{peer.\-c}!print\-\_\-suggest\-\_\-help@{print\-\_\-suggest\-\_\-help}}
+\index{print\-\_\-suggest\-\_\-help@{print\-\_\-suggest\-\_\-help}!peer.c@{peer.\-c}}
+\subsubsection[{print\-\_\-suggest\-\_\-help}]{\setlength{\rightskip}{0pt plus 5cm}void print\-\_\-suggest\-\_\-help (
+\begin{DoxyParamCaption}
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{peer_8c_a3c86c3f2282efeae890660c76a81075c}
+
+
+Definition at line 143 of file peer.\-c.
+
+\hypertarget{peer_8c_a4a70a1327d0ff56d14c6b256d1f5678e}{\index{peer.\-c@{peer.\-c}!print\-\_\-usage@{print\-\_\-usage}}
+\index{print\-\_\-usage@{print\-\_\-usage}!peer.c@{peer.\-c}}
+\subsubsection[{print\-\_\-usage}]{\setlength{\rightskip}{0pt plus 5cm}void print\-\_\-usage (
+\begin{DoxyParamCaption}
+\item[{char $\ast$$\ast$}]{argv, }
+\item[{struct {\bf t\-\_\-verbs} $\ast$}]{v\-\_\-flags, }
+\item[{int}]{suggest\-\_\-help}
+\end{DoxyParamCaption}
+)}}\label{peer_8c_a4a70a1327d0ff56d14c6b256d1f5678e}
+
+
+Definition at line 126 of file peer.\-c.
+
+\hypertarget{peer_8c_a6302aaae12249e8ea16bfdc7de892f21}{\index{peer.\-c@{peer.\-c}!print\-\_\-version@{print\-\_\-version}}
+\index{print\-\_\-version@{print\-\_\-version}!peer.c@{peer.\-c}}
+\subsubsection[{print\-\_\-version}]{\setlength{\rightskip}{0pt plus 5cm}void print\-\_\-version (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{peer_8c_a6302aaae12249e8ea16bfdc7de892f21}
+
+
+Definition at line 110 of file peer.\-c.
+
