@@ -37,7 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * @brief Contains a socket connection inforation.
  */
 typedef struct SPINXPI_SOCKADDR {
-	char * host; /**< @breif The host name for this socket */
+	char * host; /**< @brief The host name for this socket */
   int port; /**< @brief The port number to bind this socket */
 } SPINXPI_SOCKADDR;
 
@@ -45,24 +45,30 @@ typedef struct SPINXPI_SOCKADDR {
  * @brief Contains a socket inforation.
  */
 typedef struct SPINXPI_SOCK {
-	int sockfd; /**< @breif A file descriptor for this socket */
-} SPINXPI_SOCKADDR;
+	int sockfd; /**< @brief A file descriptor for this socket */
+} SPINXPI_SOCK;
+
+/**
+ * @brief Creates a new socket connection
+ * @param sock a socket connection object, or NULL
+ * @return `sock` or NULL on failure
+ */
+SPINXPI_SOCK * socket(SPINXPI_SOCK * sock);
 
 /**
  * @brief Binds a new socket connection
- * @param sock a socket instance
- * @param host a host name or internet IP address
- * @param port a port number to use
+ * @param sock a socket connection instance
+ * @param addr a socket address to bind to
  * @return `sock`; otherwise NULL on failure
  */
-SPINXPI_SOCK * bind(SPINXPI_SOCK * sock, char * host, int port);
+SPINXPI_RESULT bind(SPINXPI_SOCK * sock, SPINXPI_SOCKADDR * addr);
 
 /**
  * @brief Marks the socket as a listener.
  * @param sock a socket instance
  * @return `sock`; otherwise NULL on failure, sets `errno`
  */
-SPINXPI_SOCK * listen(SPINXPI_SOCK * sock);
+SPINXPI_RESULT listen(SPINXPI_SOCK * sock);
 
 /**
  * @brief Accepts client connections to `sock` via the client address `cli_addr`

@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
 \file types.h
-\brief Defines commonly used type names, wraps, includes system types when needed
+\brief Defines commonly used type names, enums, includes system types when needed
 */
 
 #ifndef _SPINXPI_TYPES_H_
@@ -31,31 +31,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /**
  * @brief A POSIX style return value with 0 bound to success, -1 to failure.
  */
-typedef int SPINXPI_RESULT;
-
-/**
- * @brief A result value constant meaning "no error"
- */
-static const SPINXPI_RESULT SPINXPI_OK = 0;
-
-/**
- * @brief A result value c
- */
-static const SPINXPI_RESULT SPINXPI_FAIL = -1;
+typedef enum SPINXPI_RESULT {
+	SPINXPI_FAIL = -1, /**< @brief A result value constant meaning "failure" */
+	SPINXPI_OK = 0 /**< @brief A result value constant meaning "no error" */
+} SPINXPI_RESULT;
 
 /**
  * @brief A boolean type modelled after standard libraries
  */
-typedef bool SPINXPI_BOOL;
-
-/**
- * @brief A constant corresponding to boolean `true`
- */
-static const SPINXPI_BOOL SPINXPI_TRUE = 1;
-
-/**
- * @brief A constant corresponsing to boolean `false`
- */
-static const SPINXPI_BOOL SPINXPI_FALSE = 0;
+typedef enum SPINXPI_BOOL {
+	SPINXPI_FALSE = 0, /**< @brief A constant corresponding to boolean `false` */
+	SPINXPI_TRUE = 1 /**< @brief A constant corresponsing to boolean `true` */
+} SPINXPI_BOOL;
 
 #endif /* _SPINXPI_TYPES_H_ */
