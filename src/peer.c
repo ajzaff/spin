@@ -43,7 +43,7 @@ int main(int argc, char ** argv) {
 		exit(0);
 	}
 
-	if(a_flags.init) {
+	if(v_flags.init) {
 		// recursively descend for Spinfile
 		/*
       if(!(fd=find_spinfile(...))) {
@@ -58,7 +58,7 @@ int main(int argc, char ** argv) {
 		*/
 	}
 
-	if(a_flags.destroy) {
+	if(v_flags.destroy) {
 		// attempt to unload collateral, then delete local cache.
     /*
     get_clique(&clique_...)
@@ -86,7 +86,7 @@ void print_help(char ** argv, struct t_verbs * v_flags) {
 	char * file;
 	char buf[1024];
 
-	bzero(&buf, 1024);
+	memset(&buf, 0, 1024);
 	file = "spin_help";
 
 	if(v_flags != NULL) {
@@ -111,7 +111,7 @@ void print_version() {
 	FILE * fd;
 	char buf[256];
 
-	bzero(&buf, 256);
+	memset(&buf, 0, 256);
 	fd = fopen("spin_version", "r");
 
 	if(fd == NULL) {
