@@ -21,29 +21,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
-\file socket.c
-\brief Implements cross-patform socket connections
+\file spincache.h
+\brief SPIN data cache I/O
 */
-
-#include "include/socket.h"
-#include "include/error.h"
-#include <sys/socket.h>
-
-SPINXPI_SOCK * socket_sock(SPINXPI_SOCK * sock) {
-  if(sock == NULL) {
-    sock = (SPINXPI_SOCK *)malloc(sizeof(SPINXPI_SOCK));
-  }
-  if((sock.fd=socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
-    char * err = stderror("", NULL);
-    free(err);
-    exit(0);
-  }
-}
-
-SPINXPI_RESULT socket_sendto(SPINXPI_SOCK * sock, void * buf, SPINXPI_SIZE len, SPINXPI_SOCKADDR * addr, SPINXPI_LEN addr_len) {
-  sendto(sock, buf, len, addr, addr_len);
-}
-
-SPINXPI_RESULT socket_sendto(SPINXPI_SOCK * sock, void * buf, SPINXPI_SIZE len) {
-  send(sock, buf, len);
-}

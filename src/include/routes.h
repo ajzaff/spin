@@ -21,16 +21,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
-\file verbs.h
-\brief Interface for supported commands
+\file routes.h
+\brief SPIN routes table
 */
-
-#ifndef _SPINXPI_VERBS_H
-#define _SPINXPI_VERBS_H
-
-/**
- * @brief A structure containing verb flags to be implemented
- */
-extern typedef struct SPINXPI_VERBS SPINXPI_VERBS;
-
-#endif /* _SPINXPI_VERBS_H */

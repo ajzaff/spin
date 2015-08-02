@@ -28,18 +28,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef _SPINXPI_OPTIONS_H
 #define _SPINXPI_OPTIONS_H
 
+#include "types.h"
 #include <getopt.h>
 
 /**
- * @brief A structure containing option flags to be set by long and short options
+ * @brief A structure containing verb flags
  */
-extern typedef struct SPINXPI_OPTS SPINXPI_OPTS;
+typedef struct SPINXPI_VERBS {
+  int init; /**< @brief Initializes a new SPIN project */
+} SPINXPI_VERBS;
 
 /**
- * @brief A structure containing all long options
- * 
- * This structure must be terminated with a 0-row (i.e. `{0,0,0,0}`).
+ * @brief A structure containing option flags
  */
-extern struct option long_options[];
+typedef struct SPINXPI_OPTIONS {
+  int help, /**< @brief Help contents flag */
+    version, /**< @brief Version info flag */
+    verbose; /**< @brief Verbose debugging mode flag */
+} SPINXPI_OPTIONS;
+
+/**
+ * @brief Parses all options into a flags structure
+ * @param v_flags flags set when verbs are found
+ * @param opts a structure containing option flags and values
+ * @param argc the number of arguments
+ * @param argv the array of string arguments
+ * @return a result 0 on success, -1 on failure.
+ */
+SPINXPI_RESULT options_parseall(SPINXPI_VERBS * v_flags, SPINXPI_OPTIONS * o_flags, int argc, char ** argv);
 
 #endif /* _SPINXPI_OPTIONS_H */

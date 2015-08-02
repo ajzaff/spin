@@ -44,4 +44,9 @@ typedef enum SPINXPI_BOOL {
   SPINXPI_TRUE = 1 /**< @brief A constant corresponsing to boolean `true` */
 } SPINXPI_BOOL;
 
+/**
+ * @brief A size type definition much like `size_t`
+ */
+typedef int SPINXPI_SIZE;
+
 #endif /* _SPINXPI_TYPES_H */

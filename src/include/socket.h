@@ -50,22 +50,22 @@ typedef struct SPINXPI_SOCK {
  * @param sock a socket connection object, or NULL
  * @return `sock` or NULL on failure
  */
-SPINXPI_SOCK * socket(SPINXPI_SOCK * sock);
+SPINXPI_SOCK * socket_sock(SPINXPI_SOCK * sock);
 
 /**
  * @brief Binds a new socket connection
  * @param sock a socket connection instance
  * @param addr a socket address to bind to
- * @return `sock`; otherwise NULL on failure
+ * @return a result, sets `errno` flags
  */
-SPINXPI_RESULT bind(SPINXPI_SOCK * sock, SPINXPI_SOCKADDR * addr);
+SPINXPI_RESULT socket_bind(SPINXPI_SOCK * sock, SPINXPI_SOCKADDR * addr);
 
 /**
  * @brief Marks the socket as a listener.
  * @param sock a socket instance
- * @return `sock`; otherwise NULL on failure, sets `errno`
+ * @return a result, sets `errno` flags
  */
-SPINXPI_RESULT listen(SPINXPI_SOCK * sock);
+SPINXPI_RESULT socket_listen(SPINXPI_SOCK * sock);
 
 /**
  * @brief Accepts client connections to `sock` via the client address `cli_addr`
@@ -73,13 +73,24 @@ SPINXPI_RESULT listen(SPINXPI_SOCK * sock);
  * @param cli_addr a client address
  * @return the accepted socket or `NULL`, sets `errno`
  */
-SPINXPI_SOCK * accept(SPINXPI_SOCK * sock, SPINXPI_SOCKADDR * cli_addr);
+SPINXPI_SOCK * socket_accept(SPINXPI_SOCK * sock, SPINXPI_SOCKADDR * cli_addr);
+
+/**
+ * @brief Sends a message to the given client address
+ * @param sock the sending socket
+ * @param addr the address of the receiver
+ * @param addr_len the length of the address
+ * @param msg the message to send
+ * @param msg_len the message length
+ * @return a result, sets `errno` flags
+ */
+SPINXPI_RESULT socket_sendto(SPINXPI_SOCK * sock, void * buf, SPINXPI_SIZE len, SPINXPI_SOCKADDR * addr, SPINXPI_LEN addr_len);
 
 /**
  * @brief Closes the given socket
  * @param sock a socket instance
- * @return 0 on success, -1 on failure, `errno` set
+ * @return a result, sets `errno` flags
  */
-SPINXPI_RESULT close(SPINXPI_SOCK * sock);
+SPINXPI_RESULT socket_close(SPINXPI_SOCK * sock);
 
 #endif /* _SPINXPI_SOCKET_H */

@@ -21,29 +21,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
-\file socket.c
-\brief Implements cross-patform socket connections
+\file init.h
+\brief Interface to the peer init option verb
 */
 
-#include "include/socket.h"
-#include "include/error.h"
-#include <sys/socket.h>
+#ifndef _SPINXPI_INIT_H
+#define _SPINXPI_INIT_H
 
-SPINXPI_SOCK * socket_sock(SPINXPI_SOCK * sock) {
-  if(sock == NULL) {
-    sock = (SPINXPI_SOCK *)malloc(sizeof(SPINXPI_SOCK));
-  }
-  if((sock.fd=socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
-    char * err = stderror("", NULL);
-    free(err);
-    exit(0);
-  }
-}
 
-SPINXPI_RESULT socket_sendto(SPINXPI_SOCK * sock, void * buf, SPINXPI_SIZE len, SPINXPI_SOCKADDR * addr, SPINXPI_LEN addr_len) {
-  sendto(sock, buf, len, addr, addr_len);
-}
 
-SPINXPI_RESULT socket_sendto(SPINXPI_SOCK * sock, void * buf, SPINXPI_SIZE len) {
-  send(sock, buf, len);
-}
+#endif /* _SPINXPI_INIT_H */
