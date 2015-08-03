@@ -1,4 +1,5 @@
-package com.alanjz.spin;/*
+package com.alanjz.spin.cache;
+/*
     ____/ ___ \   /  __  \
    __  ) /__/ /  /  / /  /
  _____/  ____/__/__/ /__/  (c)
@@ -20,5 +21,5 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public class SpinProtocol {
+public interface SpincacheProtocol {
 }
