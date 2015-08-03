@@ -32,22 +32,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define __FILENAME__(f) (strrchr(f, '/') ? strrchr(f, '/') + 1 : f)
 
-SPINXPI_RESULT append_message(FILE * file, SPINXPI_ERRINFO * e_info) {
+SPINXPI_RESULT error_log(FILE * file, SPINXPI_ERRINFO * e_info) {
   char * fmt;
+  char e_str[128];
   
-  fmt = "[%-5s] %s\n%s:%d %s"
+  fmt = "%s[%-5s]%s @%s:%d: %s%s\n";
+  sprintf(e_str, "%s%s", errno == 0? "" : " ", errno == 0? "" : strerror(errno));
   if(e_info == NULL) {
     SPINXPI_ERRINFO e;
-    e.msg = strerror(errno);
+    e.msg = "unspecified error";
     e.lineno = __LINE__;
     e.fileno = __FILENAME__(__FILE__);
-    e.level = ERROR;
-    if(fprintf(file, fmt, LOG_LEVEL_NAME[e.level], "", e.fileno, e.lineno, e.msg) < 0) {
-      return SPINXPI_FAIL;
+    e.level = LL_ERROR;
+    if(fprintf(file, fmt, LLCOLOR[e.level], LLNAME[e.level], e_str, __FILENAME__(e.fileno), e.lineno, e.msg, LLECOLOR[e.level]) < 0) {
+      return RESULT_FAIL;
     }
   }
-  else if(fprintf(file, fmt, LOG_LEVEL_NAME[e.level], e.msg, e.fileno, e.lineno, strerror(errno) < 0) {
-    return SPINXPI_FAIL;
+  else if(fprintf(file, fmt, LLCOLOR[e_info->level], LLNAME[e_info->level], e_str, __FILENAME__(e_info->fileno), e_info->lineno, e_info->msg, LLECOLOR[e_info->level]) < 0) {
+    return RESULT_FAIL;
   }
-  return SPINXPI_OK;
+  return RESULT_OK;
 }

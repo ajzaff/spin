@@ -29,23 +29,38 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SPINXPI_ERROR_H
 
 #include "types.h"
+#include <stdio.h>
 
 /**
  * @brief A log level structure
  */
 typedef enum SPINXPI_LOGLEVEL {
-  INFO = 0, /**< @brief Info-level message */
-  DEBUG = 0x1, /**< @brief Debug-level message */
-  WARN = 0x2, /**< @brief Warn-level message */
-  ERROR = 0x4, /**< @brief Error-level message */
-  FATAL = 0x8 /**< @brief Fatal-level message */
+  LL_INFO, /**< @brief Info-level message */
+  LL_DEBUG, /**< @brief Debug-level message */
+  LL_WARN, /**< @brief Warn-level message */
+  LL_ERROR, /**< @brief Error-level message */
+  LL_FATAL /**< @brief Fatal-level message */
 } SPINXPI_LOGLEVEL;
 
 /**
  * @brief Array containing log level names
  */
-static const char * LEVEL_NAME[] = {
+static const char * LLNAME[] = {
   "INFO", "DEBUG", "WARN", "ERROR", "FATAL"
+};
+
+/**
+ * @brief Color tags
+ */
+static const char * LLCOLOR[] = {
+  "", "", "\033[33m", "\033[31m", "\033[31m"
+};
+
+/**
+ * @brief Color tags
+ */
+static const char * LLECOLOR[] = {
+  "", "", "\033[0m", "\033[0m", "\033[0m"
 };
 
 /**
@@ -64,6 +79,6 @@ typedef struct SPINXPI_ERRINFO {
  * @param e_info an error info structure
  * @return whether the info could be written
  */
-SPINXPI_RESULT append_message(FILE * file, SPINXPI_ERRINFO * e_info);
+SPINXPI_RESULT error_log(FILE * file, SPINXPI_ERRINFO * e_info);
 
 #endif /* SPINXPI_ERROR_H */

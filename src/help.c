@@ -48,6 +48,10 @@ void help_topic_general(char * pname) {
 
 void help_topic_init(char * pname) {
   help_usage_init(pname);
+  printf("ARGUMENTS\n");
+  printf("  %-25s%s\n", "-f, --force", "OVERWRITE existing Spinfile");
+  printf("  %-25s%s\n", "-m, --minimal", "output a BARE-BONES Spinfile (no help comments)");
+  printf("  %-25s%s\n", "-o, --output=FILE", "OUTPUT path for Spinfile. '-' for stdout");
   printf("OPTIONS\n");
   printf("  %-25s%s\n", "-V, --version", "displays VERSION information");
   printf("  %-25s%s\n", "-h, --help", "prints this HELP page");

@@ -22,12 +22,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
 \file peer.h
-\brief Peer logic definitions
+\brief Peer driver definitions
 */
 
 #ifndef _SPINXPI_PEER_H
 #define _SPINXPI_PEER_H
 
+#define __SPIN_VERSION__ "0.1.0-SNAPSHOT"
+#define __PUBLIC_PROTOCOL_VERSION__ "1.0"
+#define __PRIVATE_PROTOCOL_VERSION__ "1.0"
 
+/**
+ * @brief Prints version information
+ */
+void print_version();
 
 #endif /* _SPINXPI_PEER_H */
