@@ -1,4 +1,5 @@
 package com.alanjz.spin;
+
 /*
     ____/ ___ \   /  __  \
    __  ) /__/ /  /  / /  /
@@ -22,4 +23,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 public interface SpinfileProtocol {
+
+  /**
+   * Documented member
+   */
+  public int x();
 }
