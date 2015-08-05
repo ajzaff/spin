@@ -5,7 +5,7 @@
       __/
 ~~~
 
-![Build Status](https://travis-ci.org/spacenut/spin.svg)
+[![Build Status](https://travis-ci.org/spacenut/spin.svg)](https://travis-ci.org/spacenut/spin)
 
 ## About this project
 
