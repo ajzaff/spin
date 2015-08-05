@@ -1,0 +1,3 @@
+rootProject.name = 'spin'
+include 'spin-core'
+
