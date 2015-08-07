@@ -1,3 +1,6 @@
 rootProject.name = 'spin'
-include 'spin-core'
+include 'backup'
+include 'core'
+include 'mmap'
+include 'daemon'
 

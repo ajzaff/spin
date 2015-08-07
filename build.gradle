@@ -1,14 +1,85 @@
-group 'com.alanjz.spin'
-version '1.0-SNAPSHOT'
+allprojects {
+    apply plugin: 'java'
+    version = '1.0-SNAPSHOT'
 
-apply plugin: 'java'
+    repositories {
+        mavenCentral()
+    }
 
-sourceCompatibility = 1.5
-
-repositories {
-    mavenCentral()
+    jar {
+        manifest {
+            attributes 'Implementation-Version': version
+        }
+        baseName = 'spin'
+    }
 }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+def commonProjects = [':mmap', ':core']
+task commonJar(type: Jar, dependsOn: commonProjects.collect { it + ":compileJava" }) {
+    from files(commonProjects.collect { project(it).sourceSets.main.output })
+    manifest {
+        attributes 'Implementation-Title': 'SPIN Commons'
+    }
+    appendix = 'common'
+}
+
+def allProjects = [':daemon', ':mmap', ':core']
+task allJar(type: Jar, dependsOn: allProjects.collect { it + ":compileJava" }) {
+    from files(allProjects.collect { project(it).sourceSets.main.output })
+    manifest {
+        attributes 'Implementation-Title': 'SPIN Commons',
+                'Main-Class': 'com.alanjz.spin.daemon.DaemonDriver'
+    }
+}
+
+project(':core') {
+    dependencies {
+        testCompile 'junit:junit:4.11'
+    }
+    jar {
+        manifest {
+            attributes 'Implementation-Title': 'SPIN Core'
+        }
+        appendix = 'core'
+    }
+}
+
+project(':daemon') {
+    dependencies {
+        compile project(':mmap')
+        testCompile 'junit:junit:4.11'
+    }
+    jar {
+        manifest {
+            attributes 'Implementation-Title': 'SPIN Daemon',
+                    'Main-Class': 'com.alanjz.spin.daemon.DaemonDriver'
+        }
+        appendix = 'daemon'
+    }
+}
+
+project(':mmap') {
+    dependencies {
+        compile project(':core')
+        testCompile 'junit:junit:4.11'
+    }
+    jar {
+        manifest {
+            attributes 'Implementation-Title': 'SPIN MMAP'
+        }
+        appendix = 'mmap'
+    }
+}
+
+project(':backup') {
+    dependencies {
+        compile project(':core')
+        testCompile 'junit:junit:4.11'
+    }
+    jar {
+        manifest {
+            attributes 'Implementation-Title': 'SPIN Backup'
+        }
+        appendix = 'backup'
+    }
 }
