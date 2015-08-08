@@ -22,7 +22,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import com.alanjz.spin.util.Resource;
+import com.alanjz.spin.Resource;
 
 public class AbstractMappedResource implements MappedResource {
 

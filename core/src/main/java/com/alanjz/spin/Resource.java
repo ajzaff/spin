@@ -1,4 +1,4 @@
-package com.alanjz.spin.util;
+package com.alanjz.spin;
 
 /*
     ____/ ___ \   /  __  \
