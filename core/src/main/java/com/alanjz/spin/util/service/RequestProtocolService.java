@@ -1,4 +1,4 @@
-package com.alanjz.spin;
+package com.alanjz.spin.util.service;
 
 /*
     ____/ ___ \   /  __  \
@@ -22,20 +22,22 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import java.io.File;
+import com.alanjz.spin.mpi.RequestProtocol;
 
-public interface RequestScheme extends Versioned {
-
-  /**
-   * Returns the short name of this scheme
-   * @return the short name of this scheme
-   */
-  String getName();
+public class RequestProtocolService extends AbstractService<RequestProtocol> {
 
   /**
-   * The mapping from a resource to a cache file.
-   * @param resource
-   * @return
+   *
    */
-  File mapResource(Resource resource);
+  private static final RequestProtocolService instance =
+      new RequestProtocolService(RequestProtocol.class);
+
+  /**
+   * @param serviceClass
+   */
+  protected RequestProtocolService(Class<RequestProtocol> serviceClass) {
+    super(serviceClass);
+  }
+
+
 }

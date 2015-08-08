@@ -22,12 +22,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import com.alanjz.spin.Resource;
-import com.alanjz.spin.Versioned;
+import com.alanjz.spin.util.Resource;
 
 import java.net.MalformedURLException;
 
-public interface Spincache extends Versioned {
+public interface Spincache {
 
   /**
    * Attempts to load the resource

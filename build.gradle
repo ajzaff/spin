@@ -14,24 +14,6 @@ allprojects {
     }
 }
 
-def commonProjects = [':mmap', ':core']
-task commonJar(type: Jar, dependsOn: commonProjects.collect { it + ":compileJava" }) {
-    from files(commonProjects.collect { project(it).sourceSets.main.output })
-    manifest {
-        attributes 'Implementation-Title': 'SPIN Commons'
-    }
-    appendix = 'common'
-}
-
-def allProjects = [':daemon', ':mmap', ':core']
-task allJar(type: Jar, dependsOn: allProjects.collect { it + ":compileJava" }) {
-    from files(allProjects.collect { project(it).sourceSets.main.output })
-    manifest {
-        attributes 'Implementation-Title': 'SPIN Commons',
-                'Main-Class': 'com.alanjz.spin.daemon.DaemonDriver'
-    }
-}
-
 project(':core') {
     dependencies {
         testCompile 'junit:junit:4.11'

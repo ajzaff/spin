@@ -1,4 +1,4 @@
-package com.alanjz.spin.peers;
+package com.alanjz.spin.mpi;
 
 /*
     ____/ ___ \   /  __  \
@@ -22,30 +22,54 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+import java.util.Set;
+
 /**
- * Protocol which network peers use to route
+ *
  */
-public interface Peer {
+public class AbstractRequestProtocol implements RequestProtocol {
 
   /**
-   * Gets a Base64 unique identifier for this peer.
-   * The ID is randomly generated, and static at peer runtime.
-   * The current standard computes a SHA1 from a secret,
-   * a crypto-secure random number generated at startup
-   * and held until the peer exits.
-   * @return a Base64 unique identifier for this peer
+   *
    */
-  String getID();
+  protected Set<RequestVerb> supportedVerbs;
 
   /**
-   * The multicasting on which to discover new peers
-   * @return a multicasting IP used to discover new peers
+   *
    */
-  String getDiscoveryAddress();
+  protected String name;
 
   /**
-   * The port on which discovery of peers happens
-   * @return a port on which to discover peers
+   *
    */
-  int getDiscoveryPort();
+  protected AbstractRequestProtocol(String name, Set<RequestVerb> supportedVerbs) {
+    setSupportedVerbs(supportedVerbs);
+    setName(name);
+  }
+
+  /**
+   *
+   * @param name
+   */
+  protected void setName(String name) {
+    this.name = name;
+  }
+
+  /**
+   *
+   * @param supportedVerbs
+   */
+  protected void setSupportedVerbs(Set<RequestVerb> supportedVerbs) {
+    this.supportedVerbs = supportedVerbs;
+  }
+
+  @Override
+  public Set<RequestVerb> getSupportedVerbs() {
+    return supportedVerbs;
+  }
+
+  @Override
+  public String getName() {
+    return name;
+  }
 }

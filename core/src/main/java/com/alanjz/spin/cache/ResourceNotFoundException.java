@@ -22,8 +22,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import java.net.URL;
-
 public class ResourceNotFoundException extends Exception {
   public ResourceNotFoundException(String message) {
     super(message);

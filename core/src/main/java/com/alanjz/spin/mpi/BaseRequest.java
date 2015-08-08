@@ -1,4 +1,4 @@
-package com.alanjz.spin;
+package com.alanjz.spin.mpi;
 
 /*
     ____/ ___ \   /  __  \
@@ -22,13 +22,19 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public interface Versioned {
+import java.net.URI;
+
+/**
+ *
+ */
+public class BaseRequest extends AbstractRequest {
 
   /**
-   * Returns a protocol version string for
-   * The name is used for backwards compatibility
-   * in standards of communicating between two peers.
-   * @return a protocol version string
+   *
+   * @param requestVerb
+   * @param requestURI
    */
-  String getVersionName();
+  public BaseRequest(RequestVerb requestVerb, URI requestURI) {
+    super(requestVerb, requestURI);
+  }
 }

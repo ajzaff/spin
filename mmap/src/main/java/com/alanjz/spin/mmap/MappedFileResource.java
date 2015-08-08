@@ -22,7 +22,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import com.alanjz.spin.RequestScheme;
+import com.alanjz.spin.util.Resource;
 
-public interface MMapScheme extends RequestScheme {
+public class MappedFileResource extends AbstractMappedResource {
+  public MappedFileResource(Resource resource) {
+    super(resource);
+  }
 }

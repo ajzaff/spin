@@ -1,4 +1,4 @@
-package com.alanjz.spin;
+package com.alanjz.spin.mpi;
 
 /*
     ____/ ___ \   /  __  \
@@ -22,14 +22,17 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public interface Resource {
+public interface Request {
 
-  /**
-   * The endpoint for a file resource is like a REST endpoint.
-   * The endpoint syntax is the same as in any file path.
-   * Unlike a file path, an implementation is not required to
-   * place the resource at this location in the filesystem.
-   * @return an endpoint representing this resource.
-   */
-  String getEndpoint();
+  RequestHeader getHeader();
+
+  RequestVerb getVerb();
+
+  RequestProtocol getProtocol();
+
+  RequestHost getHost();
+
+  RequestPath getPath();
+
+  int getPort();
 }

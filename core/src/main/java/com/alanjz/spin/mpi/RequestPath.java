@@ -1,4 +1,4 @@
-package com.alanjz.spin.mmap;
+package com.alanjz.spin.mpi;
 
 /*
     ____/ ___ \   /  __  \
@@ -22,11 +22,22 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import com.alanjz.spin.util.Resource;
-
 /**
- * A memory-mapped resource.
+ * A request path supporting wildcard matching
  */
-public interface MappedResource extends Resource {
+public interface RequestPath {
 
+  /**
+   *
+   * @param requestPath
+   * @return
+   */
+  boolean matches(RequestPath requestPath);
+
+  /**
+   *
+   * @param requestPath
+   * @return
+   */
+  boolean matches(String requestPath);
 }

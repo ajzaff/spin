@@ -22,7 +22,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import com.alanjz.spin.Versioned;
+import com.alanjz.spin.mpi.RequestProtocol;
+
+import java.util.Set;
 
 /**
  * A configuration file for a Spin project.
@@ -35,11 +37,13 @@ import com.alanjz.spin.Versioned;
  * pull in all the required resources and settings
  * to make creating projects in Spin easier.
  */
-public interface Spinfile extends Versioned {
+public interface Spinfile {
 
   /**
    * A string to use as a project name
    * @return the project name string
    */
   String getProjectName();
+
+  Set<RequestProtocol> supportedSchemes();
 }

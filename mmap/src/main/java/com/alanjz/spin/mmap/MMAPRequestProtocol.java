@@ -22,11 +22,36 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import com.alanjz.spin.util.Resource;
+import com.alanjz.spin.mpi.AbstractRequestProtocol;
+import com.alanjz.spin.mpi.RequestVerb;
+
+import java.util.HashSet;
 
 /**
- * A memory-mapped resource.
+ *
  */
-public interface MappedResource extends Resource {
+public class MMAPRequestProtocol extends AbstractRequestProtocol {
 
+  /**
+   *
+   */
+  private static final MMAPRequestProtocol instance =
+      new MMAPRequestProtocol();
+
+  /**
+   *
+   */
+  private MMAPRequestProtocol() {
+    super("mmap", new HashSet<RequestVerb>() {
+
+    });
+  }
+
+  /**
+   *
+   * @return
+   */
+  public static MMAPRequestProtocol getInstance() {
+    return instance;
+  }
 }

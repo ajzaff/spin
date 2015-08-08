@@ -22,20 +22,22 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+import com.alanjz.spin.util.Resource;
+
 public class AbstractMappedResource implements MappedResource {
 
-  protected String endpoint;
+  protected Resource resource;
 
-  public AbstractMappedResource(String endpoint) {
-    setEndpoint(endpoint);
+  public AbstractMappedResource(Resource resource) {
+    setResource(resource);
   }
 
-  protected void setEndpoint(String endpoint) {
-    this.endpoint = endpoint;
+  public void setResource(Resource resource) {
+    this.resource = resource;
   }
 
-  @Override
-  public String getEndpoint() {
-    return null;
+  public Resource getResource() {
+    return resource;
   }
+
 }

@@ -1,4 +1,4 @@
-package com.alanjz.spin.mmap;
+package com.alanjz.spin.util.builder.mpi;
 
 /*
     ____/ ___ \   /  __  \
@@ -22,11 +22,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import com.alanjz.spin.util.Resource;
-
 /**
- * A memory-mapped resource.
+ *
  */
-public interface MappedResource extends Resource {
-
+public class BaseRequestBuilder extends AbstractRequestBuilder {
 }
