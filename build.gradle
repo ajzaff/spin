@@ -14,16 +14,14 @@ allprojects {
     }
 }
 
-project(':core') {
-    dependencies {
-        testCompile 'junit:junit:4.11'
+dependencies {
+    testCompile 'junit:junit:4.11'
+}
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'SPIN Core'
     }
-    jar {
-        manifest {
-            attributes 'Implementation-Title': 'SPIN Core'
-        }
-        appendix = 'core'
-    }
+    appendix = 'core'
 }
 
 project(':daemon') {
@@ -42,7 +40,7 @@ project(':daemon') {
 
 project(':mmap') {
     dependencies {
-        compile project(':core')
+        compile project(':')
         testCompile 'junit:junit:4.11'
     }
     jar {
@@ -55,7 +53,7 @@ project(':mmap') {
 
 project(':backup') {
     dependencies {
-        compile project(':core')
+        compile project(':')
         testCompile 'junit:junit:4.11'
     }
     jar {
