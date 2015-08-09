@@ -25,5 +25,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 public class DaemonDriver {
   public static void main(String[] args) {
     System.out.println("Hello, SPIN Driver!");
+
   }
 }

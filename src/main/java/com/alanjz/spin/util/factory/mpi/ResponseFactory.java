@@ -1,4 +1,4 @@
-package com.alanjz.spin.util.parser.mpi;
+package com.alanjz.spin.util.factory.mpi;
 
 /*
     ____/ ___ \   /  __  \
@@ -22,12 +22,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import com.alanjz.spin.mpi.Request;
-import com.alanjz.spin.util.parser.Parser;
+import com.alanjz.spin.mpi.response.Response;
+import com.alanjz.spin.util.factory.Factory;
 
 /**
  *
  */
-public interface RequestParser extends Parser<Request> {
+public class ResponseFactory implements Factory<Response> {
 
+  @Override
+  public Response build() throws Exception {
+    return null;
+  }
 }

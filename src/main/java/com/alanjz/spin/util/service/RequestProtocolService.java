@@ -22,8 +22,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import com.alanjz.spin.mpi.RequestProtocol;
+import com.alanjz.spin.mpi.request.RequestProtocol;
 
+import javax.management.ServiceNotFoundException;
+
+/**
+ *
+ */
 public class RequestProtocolService extends AbstractService<RequestProtocol> {
 
   /**
@@ -39,5 +44,27 @@ public class RequestProtocolService extends AbstractService<RequestProtocol> {
     super(serviceClass);
   }
 
+  /**
+   *
+   * @param name
+   * @return
+   * @throws ServiceNotFoundException
+   */
+  @Override
+  public RequestProtocol getService(String name) throws ServiceNotFoundException {
+    for(RequestProtocol protocol : this) {
+      if(protocol.getName().equalsIgnoreCase(name)) {
+        return protocol;
+      }
+    }
+    throw new ServiceNotFoundException("could not load name service '" + name + "'");
+  }
 
+  /**
+   *
+   * @return
+   */
+  public static RequestProtocolService getInstance() {
+    return instance;
+  }
 }

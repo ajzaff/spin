@@ -22,6 +22,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @param <T>
@@ -31,5 +34,47 @@ public interface Parser<T> {
   /**
    *
    */
-  T parse() throws Exception;
+  static final Pattern TOKEN_PATTERN = Pattern.compile("\\S+");
+
+  /**
+   *
+   */
+  static final Pattern WHITESPACE_PATTERN = Pattern.compile("\\s+");
+
+  /**
+   *
+   * @return
+   */
+  T parse();
+
+  /**
+   *
+   * @param pattern
+   * @param matcher
+   */
+  static void usePattern(Pattern pattern, Matcher matcher) {
+    if(matcher.pattern() != pattern) {
+      matcher.usePattern(pattern);
+    }
+  }
+
+  /**
+   *
+   * @param matcher
+   * @return
+   */
+  static boolean consumeWhitespace(Matcher matcher) {
+    usePattern(WHITESPACE_PATTERN, matcher);
+    return matcher.find();
+  }
+
+  /**
+   *
+   * @param matcher
+   * @return
+   */
+  static boolean consumeToken(Matcher matcher) {
+    usePattern(TOKEN_PATTERN, matcher);
+    return matcher.find();
+  }
 }

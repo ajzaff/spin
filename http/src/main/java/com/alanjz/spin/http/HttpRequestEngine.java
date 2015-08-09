@@ -1,4 +1,4 @@
-package com.alanjz.spin.mpi;
+package com.alanjz.spin.http;
 
 /*
     ____/ ___ \   /  __  \
@@ -22,17 +22,28 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public interface Request {
+import com.alanjz.spin.util.engine.mpi.RequestEngine;
 
-  RequestHeader getHeader();
+/**
+ *
+ */
+public class HTTPRequestEngine implements RequestEngine {
 
-  RequestVerb getVerb();
+  /**
+   *
+   */
+  private static final HTTPRequestEngine instance = new HTTPRequestEngine();
 
-  RequestProtocol getProtocol();
+  @Override
+  public void handleRequest(String requestText) throws Exception {
 
-  RequestHost getHost();
+  }
 
-  RequestPath getPath();
-
-  int getPort();
+  /**
+   *
+   * @return
+   */
+  static HTTPRequestEngine getInstance() {
+    return instance;
+  }
 }

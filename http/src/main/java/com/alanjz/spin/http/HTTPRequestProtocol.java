@@ -1,4 +1,4 @@
-package com.alanjz.spin.util.builder;
+package com.alanjz.spin.http;
 
 /*
     ____/ ___ \   /  __  \
@@ -22,15 +22,34 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+import com.alanjz.spin.mpi.request.AbstractRequestProtocol;
+
+import java.util.Arrays;
+
 /**
  *
- * @param <T>
  */
-public interface Builder<T> {
+public class HTTPRequestProtocol extends AbstractRequestProtocol {
+
+  /**
+   *
+   */
+  private static final HTTPRequestProtocol instance =
+      new HTTPRequestProtocol();
+
+  /**
+   *
+   */
+  protected HTTPRequestProtocol() {
+    super("http", "1.0", HTTPRequestEngine.getInstance(),
+        Arrays.asList("GET", "HEAD", "POST", "PUT", "DELETE", "TRACE", "CONNECT"));
+  }
 
   /**
    *
    * @return
    */
-  T build() throws Exception;
+  public HTTPRequestProtocol getInstance() {
+    return instance;
+  }
 }

@@ -22,13 +22,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+import java.util.Iterator;
 import java.util.ServiceLoader;
 
 /**
  *
  * @param <S>
  */
-public class AbstractService<S> implements Service<S> {
+public abstract class AbstractService<S> implements Service<S> {
 
   /**
    *
@@ -74,6 +75,11 @@ public class AbstractService<S> implements Service<S> {
 
   @Override
   public ServiceLoader<S> getServiceLoader() {
-    return null;
+    return serviceLoader;
+  }
+
+  @Override
+  public Iterator<S> iterator() {
+    return getServiceLoader().iterator();
   }
 }

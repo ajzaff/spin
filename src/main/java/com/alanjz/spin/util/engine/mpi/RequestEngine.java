@@ -1,4 +1,4 @@
-package com.alanjz.spin.mpi;
+package com.alanjz.spin.util.engine.mpi;
 
 /*
     ____/ ___ \   /  __  \
@@ -22,5 +22,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public interface Response {
+import com.alanjz.spin.mpi.request.RequestProtocol;
+import com.alanjz.spin.util.engine.Engine;
+
+/**
+ *
+ */
+public interface RequestEngine extends Engine {
+
+  /**
+   *
+   */
+  void handleRequest(String requestText) throws Exception;
 }

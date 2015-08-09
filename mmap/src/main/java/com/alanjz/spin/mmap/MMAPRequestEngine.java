@@ -1,4 +1,4 @@
-package com.alanjz.spin.mpi;
+package com.alanjz.spin.mmap;
 
 /*
     ____/ ___ \   /  __  \
@@ -22,22 +22,17 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import java.util.Set;
+import com.alanjz.spin.util.engine.mpi.RequestEngine;
 
 /**
  *
  */
-public interface RequestProtocol {
+public class MMAPRequestEngine implements RequestEngine {
 
-  /**
-   *
-   * @return
-   */
-  Set<RequestVerb> getSupportedVerbs();
 
-  /**
-   * Returns the short name of this scheme
-   * @return
-   */
-  String getName();
+
+  @Override
+  public void handleRequest(String requestText) throws Exception {
+
+  }
 }

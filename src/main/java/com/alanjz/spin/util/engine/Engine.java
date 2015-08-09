@@ -1,4 +1,4 @@
-package com.alanjz.spin.mpi;
+package com.alanjz.spin.util.engine;
 
 /*
     ____/ ___ \   /  __  \
@@ -22,5 +22,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public interface RequestHeader {
+/**
+ *
+ */
+public interface Engine {
 }

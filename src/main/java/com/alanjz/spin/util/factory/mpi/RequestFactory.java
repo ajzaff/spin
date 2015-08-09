@@ -1,4 +1,4 @@
-package com.alanjz.spin.util.builder.mpi;
+package com.alanjz.spin.util.factory.mpi;
 
 /*
     ____/ ___ \   /  __  \
@@ -22,23 +22,18 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import com.alanjz.spin.mpi.BaseRequest;
-import com.alanjz.spin.mpi.Request;
-import com.alanjz.spin.mpi.RequestVerb;
-import com.alanjz.spin.util.parser.mpi.RequestSyntaxException;
-
-import java.net.URI;
-import java.net.URISyntaxException;
+import com.alanjz.spin.mpi.request.Request;
+import com.alanjz.spin.util.factory.Factory;
 
 /**
  *
  */
-public class AbstractRequestBuilder implements RequestBuilder {
+public class RequestFactory implements Factory<Request> {
 
   /**
    *
    */
-  protected RequestVerb requestVerb;
+  protected String requestVerb;
 
   /**
    *
@@ -73,60 +68,107 @@ public class AbstractRequestBuilder implements RequestBuilder {
   /**
    *
    */
+  protected String version;
+
+  /**
+   *
+   */
   protected int port;
 
   /**
    *
    */
-  protected AbstractRequestBuilder() {
+  public RequestFactory() {
 
   }
 
-  @Override
-  public RequestBuilder setRequestVerb(RequestVerb requestVerb) {
+  /**
+   *
+   * @param requestVerb
+   * @return
+   */
+  public RequestFactory setRequestVerb(String requestVerb) {
     this.requestVerb = requestVerb;
     return this;
   }
 
-  @Override
-  public RequestBuilder setScheme(String scheme) {
+  /**
+   *
+   * @param scheme
+   * @return
+   */
+  public RequestFactory setScheme(String scheme) {
     this.scheme = scheme;
     return this;
   }
 
-  @Override
-  public RequestBuilder setUserInfo(String userInfo) {
+  /**
+   *
+   * @param userInfo
+   * @return
+   */
+  public RequestFactory setUserInfo(String userInfo) {
     this.userInfo = userInfo;
     return this;
   }
 
-  @Override
-  public RequestBuilder setHost(String hostName) {
+  /**
+   *
+   * @param hostName
+   * @return
+   */
+  public RequestFactory setHost(String hostName) {
     this.hostName = hostName;
     return this;
   }
 
-  @Override
-  public RequestBuilder setPort(int port) {
+  /**
+   *
+   * @param port
+   * @return
+   */
+  public RequestFactory setPort(int port) {
     this.port = port;
     return this;
   }
 
-  @Override
-  public RequestBuilder setPath(String path) {
+  /**
+   *
+   * @param path
+   * @return
+   */
+  public RequestFactory setPath(String path) {
     this.path = path;
     return this;
   }
 
-  @Override
-  public RequestBuilder setQuery(String query) {
+  /**
+   *
+   * @param query
+   * @return
+   */
+  public RequestFactory setQuery(String query) {
     this.query = query;
     return this;
   }
 
-  @Override
-  public RequestBuilder setFragment(String fragment) {
+  /**
+   *
+   * @param fragment
+   * @return
+   */
+  public RequestFactory setFragment(String fragment) {
     this.fragment = fragment;
+    return this;
+  }
+
+  /**
+   *
+   * @param version
+   * @return
+   */
+  public RequestFactory setVersion(String version) {
+    this.version = version;
     return this;
   }
 
@@ -134,7 +176,7 @@ public class AbstractRequestBuilder implements RequestBuilder {
    *
    * @return
    */
-  protected RequestVerb getRequestVerb() {
+  protected String getRequestVerb() {
     return requestVerb;
   }
 
@@ -195,10 +237,7 @@ public class AbstractRequestBuilder implements RequestBuilder {
   }
 
   @Override
-  public Request build() throws RequestSyntaxException, URISyntaxException {
-    URI requestURI;
-
-    requestURI = new URI(getScheme(), getUserInfo(), getHostName(), getPort(), getPath(), getQuery(), getFragment());
-    return new BaseRequest(getRequestVerb(), requestURI);
+  public Request build() throws Exception {
+    return null;
   }
 }

@@ -22,10 +22,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import com.alanjz.spin.mpi.AbstractRequestProtocol;
-import com.alanjz.spin.mpi.RequestVerb;
+import com.alanjz.spin.mpi.request.AbstractRequestProtocol;
 
-import java.util.HashSet;
+import java.util.Arrays;
 
 /**
  *
@@ -35,16 +34,15 @@ public class MMAPRequestProtocol extends AbstractRequestProtocol {
   /**
    *
    */
-  private static final MMAPRequestProtocol instance =
+  protected static final MMAPRequestProtocol instance =
       new MMAPRequestProtocol();
 
   /**
    *
    */
   private MMAPRequestProtocol() {
-    super("mmap", new HashSet<RequestVerb>() {
-
-    });
+    super("mmap",
+        Arrays.asList("GET", "HEAD", "POST", "PUT", "DELETE", "TRACE", "CONNECT"));
   }
 
   /**

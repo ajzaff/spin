@@ -1,4 +1,4 @@
-package com.alanjz.spin.mpi;
+package com.alanjz.spin.mpi.request;
 
 /*
     ____/ ___ \   /  __  \
@@ -27,14 +27,70 @@ import java.net.URI;
 /**
  *
  */
-public class BaseRequest extends AbstractRequest {
+public class Request {
 
   /**
    *
-   * @param requestVerb
+   */
+  RequestProtocol protocol;
+
+  /**
+   *
+   */
+  RequestHeader header;
+
+  /**
+   *
+   */
+  URI requestURI;
+
+  /**
+   *
+   * @param protocol
    * @param requestURI
    */
-  public BaseRequest(RequestVerb requestVerb, URI requestURI) {
-    super(requestVerb, requestURI);
+  public Request(RequestProtocol protocol, URI requestURI) {
+    setRequestURI(requestURI);
+    setProtocol(protocol);
+  }
+
+  /**
+   *
+   * @param requestURI
+   */
+  protected void setRequestURI(URI requestURI) {
+    this.requestURI = requestURI;
+  }
+
+  /**
+   *
+   * @param protocol
+   */
+  protected void setProtocol(RequestProtocol protocol) {
+    this.protocol = protocol;
+  }
+
+  /**
+   *
+   * @return
+   */
+  public RequestHeader getHeader() {
+    return header;
+  }
+
+  /**
+   *
+   * @return
+   */
+  public RequestProtocol getProtocol() {
+    return protocol;
+  }
+
+  /**
+   *
+   * @return
+   */
+  public URI getRequestURI() {
+    return requestURI;
   }
 }

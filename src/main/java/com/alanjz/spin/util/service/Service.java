@@ -22,17 +22,25 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+import javax.management.ServiceNotFoundException;
 import java.util.ServiceLoader;
 
 /**
  *
  * @param <S>
  */
-public interface Service<S> {
+public interface Service<S> extends Iterable<S> {
 
   /**
    *
    * @return
    */
   ServiceLoader<S> getServiceLoader();
+
+  /**
+   *
+   * @param name
+   * @return
+   */
+  S getService(String name) throws ServiceNotFoundException;
 }

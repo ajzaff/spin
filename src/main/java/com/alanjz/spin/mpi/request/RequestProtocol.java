@@ -1,4 +1,4 @@
-package com.alanjz.spin.util.builder.mpi;
+package com.alanjz.spin.mpi.request;
 
 /*
     ____/ ___ \   /  __  \
@@ -22,68 +22,35 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import com.alanjz.spin.mpi.Request;
-import com.alanjz.spin.mpi.RequestVerb;
-import com.alanjz.spin.util.builder.Builder;
+import com.alanjz.spin.util.engine.mpi.RequestEngine;
 
 /**
  *
  */
-public interface RequestBuilder extends Builder<Request> {
+public interface RequestProtocol {
+
+  /**
+   * Returns the short name of this scheme
+   * @return
+   */
+  String getName();
 
   /**
    *
-   * @param requestVerb
    * @return
    */
-  RequestBuilder setRequestVerb(RequestVerb requestVerb);
+  String getVersion();
 
   /**
    *
-   * @param scheme
    * @return
    */
-  RequestBuilder setScheme(String scheme);
+  RequestEngine getEngine();
 
   /**
    *
-   * @param userInfo
+   * @param method
    * @return
    */
-  RequestBuilder setUserInfo(String userInfo);
-
-  /**
-   *
-   * @param hostName
-   * @return
-   */
-  RequestBuilder setHost(String hostName);
-
-  /**
-   *
-   * @param port
-   * @return
-   */
-  RequestBuilder setPort(int port);
-
-  /**
-   *
-   * @param path
-   * @return
-   */
-  RequestBuilder setPath(String path);
-
-  /**
-   *
-   * @param query
-   * @return
-   */
-  RequestBuilder setQuery(String query);
-
-  /**
-   *
-   * @param fragment
-   * @return
-   */
-  RequestBuilder setFragment(String fragment);
+  boolean supportsMethod(String method);
 }

@@ -1,4 +1,4 @@
-package com.alanjz.spin.util.builder.mpi;
+package com.alanjz.spin.mpi.response;
 
 /*
     ____/ ___ \   /  __  \
@@ -25,5 +25,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /**
  *
  */
-public class BaseRequestBuilder extends AbstractRequestBuilder {
+public class Response {
 }
