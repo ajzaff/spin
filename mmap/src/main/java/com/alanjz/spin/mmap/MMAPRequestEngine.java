@@ -29,10 +29,21 @@ import com.alanjz.spin.util.engine.mpi.RequestEngine;
  */
 public class MMAPRequestEngine implements RequestEngine {
 
-
+  /**
+   *
+   */
+  private static final MMAPRequestEngine instance = new MMAPRequestEngine();
 
   @Override
   public void handleRequest(String requestText) throws Exception {
 
+  }
+
+  /**
+   *
+   * @return
+   */
+  public static MMAPRequestEngine getInstance() {
+    return instance;
   }
 }

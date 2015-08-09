@@ -41,7 +41,7 @@ public class MMAPRequestProtocol extends AbstractRequestProtocol {
    *
    */
   private MMAPRequestProtocol() {
-    super("mmap",
+    super("mmap", "1.0", MMAPRequestEngine.getInstance(),
         Arrays.asList("GET", "HEAD", "POST", "PUT", "DELETE", "TRACE", "CONNECT"));
   }
 
