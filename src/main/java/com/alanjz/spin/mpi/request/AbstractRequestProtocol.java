@@ -65,7 +65,7 @@ public abstract class AbstractRequestProtocol implements RequestProtocol {
       String name,
       String version,
       RequestEngine engine,
-      Collection<String> methods)
+      final Collection<String> methods)
   {
     setName(name);
     setVersion(version);
