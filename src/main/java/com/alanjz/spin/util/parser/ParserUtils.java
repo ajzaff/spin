@@ -27,13 +27,47 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @param <T>
  */
-public interface Parser<T> {
+public final class ParserUtils {
 
   /**
    *
+   */
+  public static final Pattern TOKEN_PATTERN = Pattern.compile("\\S+");
+
+  /**
+   *
+   */
+  public static final Pattern WHITESPACE_PATTERN = Pattern.compile("\\s+");
+
+  /**
+   *
+   * @param pattern
+   * @param matcher
+   */
+  public static void usePattern(Pattern pattern, Matcher matcher) {
+      if(matcher.pattern() != pattern) {
+          matcher.usePattern(pattern);
+      }
+  }
+
+  /**
+   *
+   * @param matcher
    * @return
    */
-  T parse();
+  public static boolean consumeWhitespace(Matcher matcher) {
+      usePattern(WHITESPACE_PATTERN, matcher);
+      return matcher.find();
+  }
+
+  /**
+   *
+   * @param matcher
+   * @return
+   */
+  public static boolean consumeToken(Matcher matcher) {
+      usePattern(TOKEN_PATTERN, matcher);
+      return matcher.find();
+  }
 }

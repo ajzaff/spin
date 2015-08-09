@@ -51,6 +51,19 @@ project(':mmap') {
     }
 }
 
+project(':http') {
+    dependencies {
+        compile project(':')
+        testCompile 'junit:junit:4.11'
+    }
+    jar {
+        manifest {
+            attributes 'Implementation-Title': 'SPIN HTTP'
+        }
+        appendix = 'http'
+    }
+}
+
 project(':backup') {
     dependencies {
         compile project(':')
