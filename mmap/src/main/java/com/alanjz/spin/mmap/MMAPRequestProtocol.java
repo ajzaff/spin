@@ -34,7 +34,7 @@ public class MMAPRequestProtocol extends AbstractRequestProtocol {
   /**
    *
    */
-  protected static final MMAPRequestProtocol instance =
+  private static final MMAPRequestProtocol instance =
       new MMAPRequestProtocol();
 
   /**

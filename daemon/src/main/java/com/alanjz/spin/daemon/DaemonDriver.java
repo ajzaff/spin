@@ -22,9 +22,17 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public class DaemonDriver {
-  public static void main(String[] args) {
-    System.out.println("Hello, SPIN Driver!");
+import java.io.IOException;
 
+public class DaemonDriver {
+  public static void main(String[] args) throws IOException {
+    DaemonServer.main(null);
+    //for(int i=0; i < 1000; i++)
+    DaemonClient.main(null);
+    try {
+      Thread.sleep(100000);
+    } catch (InterruptedException e) {
+      return;
+    }
   }
 }
