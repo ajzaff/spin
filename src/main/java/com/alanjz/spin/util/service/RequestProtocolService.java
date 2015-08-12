@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import com.alanjz.spin.mpi.request.RequestProtocol;
 
 import javax.management.ServiceNotFoundException;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  *
@@ -48,17 +49,53 @@ public class RequestProtocolService extends AbstractService<RequestProtocol> {
    *
    * @param name
    * @return
-   * @throws ServiceNotFoundException
+   * @throws ClassNotFoundException
+   * @throws NoSuchMethodException
+   * @throws InvocationTargetException
+   * @throws InstantiationException
+   * @throws IllegalAccessException
    */
   @Override
-  public RequestProtocol getService(String name) throws ServiceNotFoundException {
+  public RequestProtocol getService(String name)
+    throws ClassNotFoundException, NoSuchMethodException,
+    InvocationTargetException, InstantiationException, IllegalAccessException
+  {
     for(RequestProtocol protocol : this) {
       if(protocol.getName().equalsIgnoreCase(name)) {
         return protocol;
       }
     }
-    throw new ServiceNotFoundException("could not load name service '" + name + "'");
+    System.out.println("Default fallback...");
+    return getDefaultService(name);
   }
+
+  /**
+   *
+   * @param name
+   * @return
+   * @throws ClassNotFoundException
+   * @throws NoSuchMethodException
+   * @throws InvocationTargetException
+   * @throws InstantiationException
+   * @throws IllegalAccessException
+   */
+  @Override
+  public RequestProtocol getDefaultService(String name)
+    throws ClassNotFoundException, NoSuchMethodException,
+    InvocationTargetException, InstantiationException, IllegalAccessException
+  {
+    Object o;
+
+    if(name.equalsIgnoreCase("mmap")) {
+      o = Class.forName("com.alanjz.spin.mmap.MMAPRequestProtocol").getDeclaredMethod("getInstance").invoke(null);
+    }
+    else {
+      throw new ClassNotFoundException("could not load named service '" + name + "'");
+    }
+
+    return (RequestProtocol) o;
+  }
+
 
   /**
    *

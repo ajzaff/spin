@@ -47,6 +47,7 @@ public abstract class AbstractService<S> implements Service<S> {
    */
   protected AbstractService(Class<S> serviceClass) {
     setServiceLoader(ServiceLoader.load(serviceClass));
+    getServiceLoader().reload();
   }
 
   /**

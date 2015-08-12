@@ -41,6 +41,15 @@ public interface Service<S> extends Iterable<S> {
    *
    * @param name
    * @return
+   * @throws Exception
    */
-  S getService(String name) throws ServiceNotFoundException;
+  S getService(String name) throws Exception;
+
+  /**
+   *
+   * @param name
+   * @return
+   * @throws Exception
+   */
+  S getDefaultService(String name) throws Exception;
 }
