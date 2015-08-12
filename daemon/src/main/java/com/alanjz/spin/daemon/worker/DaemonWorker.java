@@ -1,4 +1,4 @@
-package com.alanjz.spin.daemon;
+package com.alanjz.spin.daemon.worker;
 
 /*
     ____/ ___ \   /  __  \
@@ -22,20 +22,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import com.alanjz.spin.daemon.client.DaemonClient;
-import com.alanjz.spin.daemon.server.DaemonServer;
+/**
+ *
+ */
+public class DaemonWorker implements Runnable {
 
-import java.io.IOException;
+  @Override
+  public void run() {
 
-public class DaemonDriver {
-  public static void main(String[] args) throws IOException {
-    DaemonServer.main(null);
-    //for(int i=0; i < 1000; i++)
-    DaemonClient.main(null);
-    try {
-      Thread.sleep(100000);
-    } catch (InterruptedException e) {
-      return;
-    }
   }
 }

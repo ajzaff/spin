@@ -1,13 +1,31 @@
-package com.alanjz.spin.daemon;
+package com.alanjz.spin.daemon.client;
 
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
-import sun.misc.BASE64Encoder;
+/*
+    ____/ ___ \   /  __  \
+   __  ) /__/ /  /  / /  /
+ _____/  ____/__/__/ /__/  (c)
+      __/
+
+A P2P distributed compute and storage framework.
+Copyright (C) 2015 Alan J. Zaffetti
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
-import java.util.Random;
 
 public class DaemonClient implements Runnable {
 
