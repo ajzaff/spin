@@ -1,4 +1,4 @@
-package com.alanjz.spin.daemon.worker;
+package com.alanjz.spin.runner.worker;
 
 /*
     ____/ ___ \   /  __  \
@@ -22,10 +22,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+import com.alanjz.spin.runner.AbstractSpinRunnable;
+
 /**
  *
  */
-public class DaemonWorker implements Runnable {
+public class SpinWorker extends AbstractSpinRunnable {
 
   @Override
   public void run() {

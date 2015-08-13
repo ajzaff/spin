@@ -1,4 +1,4 @@
-package com.alanjz.spin.daemon.server;
+package com.alanjz.spin.runner.server;
 
 /*
     ____/ ___ \   /  __  \
@@ -22,36 +22,60 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import java.io.IOException;
+import com.alanjz.spin.runner.AbstractSpinRunnable;
+
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class DaemonServer implements Runnable {
+/**
+ *
+ */
+public class SpinServer extends AbstractSpinRunnable {
 
-  public static void main(String[] args) throws IOException {
-    DaemonServer daemonServer;
-    Thread th;
+  /**
+   *
+   */
+  volatile protected static int sid = 1;
 
-    daemonServer = new DaemonServer();
-    th = new Thread(daemonServer);
-    th.setDaemon(true);
-    th.start();
+  /**
+   *
+   */
+  protected int id;
+
+  /**
+   *
+   */
+  public SpinServer() {
+    super();
+    setId(nextId());
   }
 
-  boolean running = true;
+  protected static int nextId() {
+    return sid++;
+  }
 
+  public int getId() {
+    return id;
+  }
+
+  protected void setId(int id) {
+    this.id = id;
+  }
 
   @Override
   public void run() {
     try {
       ServerSocket listener = new ServerSocket(9090);
-      while (running) {
+      int i = 0;
+      while (isRunning()) { if(i++ >= 3) break;
         Socket socket = listener.accept();
         PrintWriter out =
           new PrintWriter(socket.getOutputStream(), true);
         try {
-          out.println(System.nanoTime());
+          long nanoTime = System.nanoTime();
+          System.out.println("[server " + getId() + "] " + nanoTime);
+          out.println(nanoTime);
         } finally {
           socket.close();
         }
@@ -62,5 +86,6 @@ public class DaemonServer implements Runnable {
       e.printStackTrace();
     }
 
+    System.out.println("[server " + getId() + "] shutting down...");
   }
 }
