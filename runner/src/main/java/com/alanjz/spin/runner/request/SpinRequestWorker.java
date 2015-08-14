@@ -1,4 +1,4 @@
-package com.alanjz.spin.runner.client;
+package com.alanjz.spin.runner.request;
 
 /*
     ____/ ___ \   /  __  \
@@ -22,8 +22,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import com.alanjz.spin.runner.AbstractSpinWorker;
-import com.alanjz.spin.runner.server.SpinServer;
+import com.alanjz.spin.runner.server.SpinTimeServer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -34,7 +33,7 @@ import java.net.Socket;
 /**
  *
  */
-public class SpinRequestWorker extends AbstractSpinWorker {
+public class SpinRequestWorker implements Runnable {
 
   /**
    *
@@ -44,7 +43,7 @@ public class SpinRequestWorker extends AbstractSpinWorker {
   /**
    *
    */
-  protected SpinServer spinServer;
+  protected SpinTimeServer spinTimeServer;
 
   /**
    *
@@ -53,11 +52,11 @@ public class SpinRequestWorker extends AbstractSpinWorker {
 
   /**
    *
-   * @param spinServer
+   * @param spinTimeServer
    */
-  public SpinRequestWorker(SpinServer spinServer) {
+  public SpinRequestWorker(SpinTimeServer spinTimeServer) {
     super();
-    setSpinServer(spinServer);
+    setSpinTimeServer(spinTimeServer);
     setId(nextId());
   }
 
@@ -65,12 +64,12 @@ public class SpinRequestWorker extends AbstractSpinWorker {
     return cid++;
   }
 
-  protected SpinServer getSpinServer() {
-    return spinServer;
+  protected SpinTimeServer getSpinTimeServer() {
+    return spinTimeServer;
   }
 
-  protected void setSpinServer(SpinServer spinServer) {
-    this.spinServer = spinServer;
+  protected void setSpinTimeServer(SpinTimeServer spinTimeServer) {
+    this.spinTimeServer = spinTimeServer;
   }
 
   public int getId() {
@@ -85,7 +84,7 @@ public class SpinRequestWorker extends AbstractSpinWorker {
   public void run() {
     try {
 
-      while(isRunning()) {
+      while(true) {
         try {
           Socket s = new Socket("localhost", 9090);
           BufferedReader input =

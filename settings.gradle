@@ -1,2 +1,2 @@
 rootProject.name = 'spin'
-include 'daemon', 'mmap', 'http', 'backup'
+include 'runner', 'mmap', 'http', 'backup'

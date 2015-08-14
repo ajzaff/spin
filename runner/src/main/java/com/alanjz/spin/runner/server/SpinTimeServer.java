@@ -22,8 +22,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import com.alanjz.spin.runner.AbstractSpinWorker;
-
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -31,7 +29,7 @@ import java.net.Socket;
 /**
  *
  */
-public class SpinServer extends AbstractSpinWorker {
+public class SpinTimeServer implements Runnable {
 
   /**
    *
@@ -46,7 +44,7 @@ public class SpinServer extends AbstractSpinWorker {
   /**
    *
    */
-  public SpinServer() {
+  public SpinTimeServer() {
     super();
     setId(nextId());
   }
@@ -68,7 +66,7 @@ public class SpinServer extends AbstractSpinWorker {
     try {
       ServerSocket listener = new ServerSocket(9090);
       int i = 0;
-      while (isRunning()) { if(i++ >= 3) break;
+      while (i++ < 3) {
         Socket socket = listener.accept();
         PrintWriter out =
           new PrintWriter(socket.getOutputStream(), true);

@@ -22,108 +22,64 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import com.alanjz.spin.runner.client.SpinRequestWorker;
-import com.alanjz.spin.runner.server.SpinServer;
-
 import java.io.IOException;
+import java.util.concurrent.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  */
-public class SpinRunner {
+public class SpinRunner implements Runnable {
 
   /**
    *
    */
-  protected Thread serverThread;
+  protected static ExecutorService executorService =
+    Executors.newWorkStealingPool();
 
   /**
    *
    */
-  protected Thread clientThread;
-
-  /**
-   *
-   */
-  protected SpinServer daemonServer;
-
-  /**
-   *
-   */
-  protected SpinRequestWorker daemonClient;
+  protected static Logger logger =
+    Logger.getLogger("com.alanjz.spin.runner");
 
   /**
    *
    */
   protected SpinRunner() {
-    setDaemonServer(new SpinServer());
-    setDaemonClient(new SpinRequestWorker(getDaemonServer()));
-    setServerThread(new Thread(getDaemonServer()));
-    setClientThread(new Thread(getDaemonClient()));
   }
 
   /**
    *
-   * @param daemonServer
+   * @param executorService
    */
-  protected void setDaemonServer(SpinServer daemonServer) {
-    this.daemonServer = daemonServer;
-  }
-
-  /**
-   *
-   * @param daemonClient
-   */
-  protected void setDaemonClient(SpinRequestWorker daemonClient) {
-    this.daemonClient = daemonClient;
-  }
-
-  /**
-   *
-   * @param serverThread
-   */
-  protected void setServerThread(Thread serverThread) {
-    this.serverThread = serverThread;
-  }
-
-  /**
-   *
-   * @param clientThread
-   */
-  protected void setClientThread(Thread clientThread) {
-    this.clientThread = clientThread;
+  protected static void setExecutorService(ExecutorService executorService) {
+    SpinRunner.executorService = executorService;
   }
 
   /**
    *
    * @return
    */
-  protected Thread getServerThread() {
-    return serverThread;
+  protected static ExecutorService getExecutorService() {
+    return executorService;
   }
 
   /**
    *
    * @return
    */
-  protected Thread getClientThread() {
-    return clientThread;
+  public static Logger getLogger() {
+    return logger;
   }
 
   /**
    *
-   * @return
    */
-  protected SpinServer getDaemonServer() {
-    return daemonServer;
-  }
-
-  /**
-   *
-   * @return
-   */
-  protected SpinRequestWorker getDaemonClient() {
-    return daemonClient;
+  @Override
+  public void run() {
+    getLogger().log(Level.INFO, "starting Spin peer runner...");
   }
 
   /**
@@ -132,10 +88,7 @@ public class SpinRunner {
    * @throws IOException
    */
   public static void main(String[] args) throws IOException {
-    SpinRunner spinRunner;
-
-    spinRunner = new SpinRunner();
-    spinRunner.getServerThread().start();
-    spinRunner.getClientThread().start();
+    new SpinRunner().run();
   }
+
 }

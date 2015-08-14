@@ -2,10 +2,6 @@ allprojects {
     apply plugin: 'java'
     version = '1.0-SNAPSHOT'
 
-    repositories {
-        mavenCentral()
-    }
-
     jar {
         manifest {
             attributes 'Implementation-Version': version
@@ -24,17 +20,17 @@ jar {
     appendix = 'core'
 }
 
-project(':daemon') {
+project(':runner') {
     dependencies {
         compile project(':')
         testCompile 'junit:junit:4.11'
     }
     jar {
         manifest {
-            attributes 'Implementation-Title': 'SPIN Daemon',
-                    'Main-Class': 'com.alanjz.spin.daemon.DaemonDriver'
+            attributes 'Implementation-Title': 'SPIN Runner',
+                    'Main-Class': 'com.alanjz.spin.runner.SpinRunner'
         }
-        appendix = 'daemon'
+        appendix = 'runner'
     }
 }
 
