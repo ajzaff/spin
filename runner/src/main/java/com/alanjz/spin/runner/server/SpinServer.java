@@ -22,7 +22,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import com.alanjz.spin.runner.AbstractSpinRunnable;
+import com.alanjz.spin.runner.AbstractSpinWorker;
 
 import java.io.PrintWriter;
 import java.net.ServerSocket;
@@ -31,7 +31,7 @@ import java.net.Socket;
 /**
  *
  */
-public class SpinServer extends AbstractSpinRunnable {
+public class SpinServer extends AbstractSpinWorker {
 
   /**
    *

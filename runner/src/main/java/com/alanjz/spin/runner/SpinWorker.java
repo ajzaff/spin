@@ -21,30 +21,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-public abstract class AbstractSpinRunnable implements SpinRunnable {
+/**
+ *
+ */
+public interface SpinWorker extends Runnable {
 
   /**
    *
+   * @return
    */
-  protected boolean isRunning;
-
-  /**
-   *
-   */
-  protected AbstractSpinRunnable() {
-    setRunning(true);
-  }
-
-  /**
-   *
-   * @param isRunning
-   */
-  protected void setRunning(boolean isRunning) {
-    this.isRunning = isRunning;
-  }
-
-  @Override
-  public boolean isRunning() {
-    return isRunning;
-  }
+  boolean isRunning();
 }

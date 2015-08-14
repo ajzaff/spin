@@ -22,7 +22,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import com.alanjz.spin.runner.client.SpinClient;
+import com.alanjz.spin.runner.client.SpinRequestWorker;
 import com.alanjz.spin.runner.server.SpinServer;
 
 import java.io.IOException;
@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  *
  */
-public class SpinDriver {
+public class SpinRunner {
 
   /**
    *
@@ -50,14 +50,14 @@ public class SpinDriver {
   /**
    *
    */
-  protected SpinClient daemonClient;
+  protected SpinRequestWorker daemonClient;
 
   /**
    *
    */
-  protected SpinDriver() {
+  protected SpinRunner() {
     setDaemonServer(new SpinServer());
-    setDaemonClient(new SpinClient(getDaemonServer()));
+    setDaemonClient(new SpinRequestWorker(getDaemonServer()));
     setServerThread(new Thread(getDaemonServer()));
     setClientThread(new Thread(getDaemonClient()));
   }
@@ -74,7 +74,7 @@ public class SpinDriver {
    *
    * @param daemonClient
    */
-  protected void setDaemonClient(SpinClient daemonClient) {
+  protected void setDaemonClient(SpinRequestWorker daemonClient) {
     this.daemonClient = daemonClient;
   }
 
@@ -122,7 +122,7 @@ public class SpinDriver {
    *
    * @return
    */
-  protected SpinClient getDaemonClient() {
+  protected SpinRequestWorker getDaemonClient() {
     return daemonClient;
   }
 
@@ -132,10 +132,10 @@ public class SpinDriver {
    * @throws IOException
    */
   public static void main(String[] args) throws IOException {
-    SpinDriver spinDriver;
+    SpinRunner spinRunner;
 
-    spinDriver = new SpinDriver();
-    spinDriver.getServerThread().start();
-    spinDriver.getClientThread().start();
+    spinRunner = new SpinRunner();
+    spinRunner.getServerThread().start();
+    spinRunner.getClientThread().start();
   }
 }
