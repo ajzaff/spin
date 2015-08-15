@@ -22,9 +22,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+import com.alanjz.spin.util.Spinfiles;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.*;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -35,8 +37,7 @@ public class SpinRunner implements Runnable {
   /**
    *
    */
-  protected static ExecutorService executorService =
-    Executors.newWorkStealingPool();
+  private ExecutorService executorService;
 
   /**
    *
@@ -54,15 +55,15 @@ public class SpinRunner implements Runnable {
    *
    * @param executorService
    */
-  protected static void setExecutorService(ExecutorService executorService) {
-    SpinRunner.executorService = executorService;
+  protected void setExecutorService(ExecutorService executorService) {
+    this.executorService = executorService;
   }
 
   /**
    *
    * @return
    */
-  protected static ExecutorService getExecutorService() {
+  protected ExecutorService getExecutorService() {
     return executorService;
   }
 
@@ -79,7 +80,25 @@ public class SpinRunner implements Runnable {
    */
   @Override
   public void run() {
-    getLogger().log(Level.INFO, "starting Spin peer runner...");
+    getLogger().info("starting Spin peer runner...");
+    getLogger().info("\n\n   ____/ ___ \\   /  __  \\\n" +
+      "  __  ) /__/ /  /  / /  /\n" +
+      "_____/  ____/__/__/ /__/  (c)\n" +
+      "     __/\n");
+    try {
+      getLogger().info("loading Spinfile.json...");
+      if(Spinfiles.searchRecursive(new File(System.getProperty("user.dir"))) == null) {
+        getLogger().severe("Spin runner did not find Spinfile.json in directory tree");
+        getLogger().severe("shutting down...");
+        System.exit(0);
+      }
+    }
+    catch (IOException e) {
+      getLogger().severe(e.getMessage());
+      return;
+    }
+    getLogger().info("starting Spin thread pool...");
+    setExecutorService(Executors.newWorkStealingPool());
   }
 
   /**
