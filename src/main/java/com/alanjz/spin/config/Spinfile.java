@@ -37,13 +37,73 @@ import java.util.Set;
  * pull in all the required resources and settings
  * to make creating projects in Spin easier.
  */
-public interface Spinfile {
+public class Spinfile {
+
+  /**
+   *
+   */
+  protected String projectGroup;
+
+  /**
+   *
+   */
+  protected String projectName;
+
+  /**
+   *
+   */
+  protected String projectVersion;
+
+  /**
+   *
+   */
+  protected int port;
+
+  /**
+   *
+   * @return
+   */
+  public String getProjectGroup() {
+    return projectGroup;
+  }
 
   /**
    * A string to use as a project name
    * @return the project name string
    */
-  String getProjectName();
+  public String getProjectName() {
+    return projectName;
+  }
 
-  Set<RequestProtocol> supportedSchemes();
+  /**
+   *
+   * @return
+   */
+  public String getProjectVersion() {
+    return projectVersion;
+  }
+
+  /**
+   *
+   * @param projectGroup
+   */
+  protected void setProjectGroup(String projectGroup) {
+    this.projectGroup = projectGroup;
+  }
+
+  /**
+   *
+   * @param projectName
+   */
+  protected void setProjectName(String projectName) {
+    this.projectName = projectName;
+  }
+
+  /**
+   *
+   * @param projectVersion
+   */
+  protected void setProjectVersion(String projectVersion) {
+    this.projectVersion = projectVersion;
+  }
 }

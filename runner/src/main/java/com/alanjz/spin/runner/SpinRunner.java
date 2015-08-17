@@ -22,12 +22,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import com.alanjz.spin.util.Spinfiles;
+import com.alanjz.spin.config.Spinfiles;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.*;
-import java.util.logging.Logger;
 
 /**
  *
@@ -38,12 +37,6 @@ public class SpinRunner implements Runnable {
    *
    */
   private ExecutorService executorService;
-
-  /**
-   *
-   */
-  protected static Logger logger =
-    Logger.getLogger("com.alanjz.spin.runner");
 
   /**
    *
@@ -69,10 +62,23 @@ public class SpinRunner implements Runnable {
 
   /**
    *
-   * @return
+   * @param format
+   * @param args
    */
-  public static Logger getLogger() {
-    return logger;
+  protected void info(String format, Object... args) {
+    System.out.printf("[INFO] " + format + "\n", args);
+  }
+
+  /**
+   *
+   */
+  protected void info() {
+    System.out.printf("[INFO]\n");
+  }
+
+
+  protected void fail(String format, Object... args) {
+    System.err.printf("[FAIL] " + format + "\n", args);
   }
 
   /**
@@ -80,24 +86,28 @@ public class SpinRunner implements Runnable {
    */
   @Override
   public void run() {
-    getLogger().info("starting Spin peer runner...");
-    getLogger().info("\n\n   ____/ ___ \\   /  __  \\\n" +
-      "  __  ) /__/ /  /  / /  /\n" +
-      "_____/  ____/__/__/ /__/  (c)\n" +
-      "     __/\n");
+    info("starting Spin peer runner...");
+    info();
+    info("   ____/ ___ \\   /  __  \\");
+    info("  __  ) /__/ /  /  / /  /");
+    info("_____/  ____/__/__/ /__/  (c)");
+    info("     __/");
+    info();
     try {
-      getLogger().info("loading Spinfile.json...");
-      if(Spinfiles.searchRecursive(new File(System.getProperty("user.dir"))) == null) {
-        getLogger().severe("Spin runner did not find Spinfile.json in directory tree");
-        getLogger().severe("shutting down...");
+      info("loading configuration...");
+      File file = Spinfiles.searchRecursive(new File(System.getProperty("user.dir")));
+      if(file == null) {
+        fail("Spin runner did not find Spinfile.json in directory tree");
+        fail("shutting down...");
         System.exit(0);
       }
+      info("loaded [%s]", file.getAbsolutePath());
     }
     catch (IOException e) {
-      getLogger().severe(e.getMessage());
+      fail(e.getMessage());
       return;
     }
-    getLogger().info("starting Spin thread pool...");
+    info("starting Spin thread pool...");
     setExecutorService(Executors.newWorkStealingPool());
   }
 
