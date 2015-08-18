@@ -28,7 +28,15 @@ import com.alanjz.spin.util.parser.Parser;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+import java.util.IllegalFormatException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -88,7 +96,6 @@ public class JSONSpinfileParser implements Parser<Spinfile> {
   public Spinfile parse() {
     StringBuilder stringBuilder;
     FileReader fileReader;
-    Spinfile spinfile;
     String source;
     int c;
 
@@ -113,17 +120,11 @@ public class JSONSpinfileParser implements Parser<Spinfile> {
     JSONArray peersArray = getConfig().getJSONArray("peers");
     Peer[] peers = new Peer[peersArray.length()];
 
-    for(int i=0; i < peers.length; i++)
+    for(int i=0; i < peers.length; i++) {
       peers[i] = parsePeer(peersArray.getJSONObject(i));
+    }
 
-    try {
-      spinfile = new Spinfile(modelVersion, projectGroup, projectName, projectVersion, peers);
-    }
-    catch (Exception e) {
-      e.printStackTrace();
-      return null;
-    }
-    return spinfile;
+    return new Spinfile(modelVersion, projectGroup, projectName, projectVersion, peers);
   }
 
   /**
@@ -131,12 +132,74 @@ public class JSONSpinfileParser implements Parser<Spinfile> {
    * @return
    */
   public Peer parsePeer(JSONObject jsonObject) {
-    String id = jsonObject.getString("id");
+    String id = parseID(jsonObject, jsonObject.getString("id"));
     String name = jsonObject.getString("name");
     String contentRoot = jsonObject.getString("contentRoot");
     String cacheRoot = jsonObject.getString("cacheRoot");
     int parallelism = jsonObject.getInt("parallelism");
     int port = jsonObject.getInt("port");
     return new Peer(id, port, name, contentRoot, cacheRoot, parallelism);
+  }
+
+  /**
+   *
+   */
+  static Pattern functionPattern = Pattern.compile("(\\w+)::(\\w+)\\((\\$?\\w*)\\)");
+
+  static MessageDigest sha1MessageDigest;
+
+  static {
+    try {
+      sha1MessageDigest = MessageDigest.getInstance("sha-1");
+    }
+    catch (NoSuchAlgorithmException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public String digest64(MessageDigest md, String str) {
+    byte[] bytes = md.digest(str.getBytes());
+    return Base64.getEncoder().encodeToString(bytes);
+  }
+
+  /**
+   *
+   * @param id
+   * @return
+   */
+  protected String parseID(JSONObject obj, String id) throws IllegalArgumentException {
+    Matcher matcher;
+
+    matcher = functionPattern.matcher(id);
+    if(matcher.matches()) {
+      String ns, fn, arg;
+
+      ns = matcher.group(1).toLowerCase();
+      fn = matcher.group(2).toLowerCase();
+      arg = matcher.group(3);
+      switch(ns) {
+        case "crypto":
+          switch(fn) {
+            case "sha1":
+              if(arg.startsWith("$")) {
+                String var = arg.substring(1);
+                switch(var) {
+                  case "name":
+                    return digest64(sha1MessageDigest, obj.getString(var));
+                  default:
+                    throw new IllegalArgumentException("unrecognized field '" + var + "' near '" + id + "'");
+                }
+              }
+              else {
+                return digest64(sha1MessageDigest, arg);
+              }
+            default:
+              throw new IllegalArgumentException("unrecognized function '" + fn + "' near '" + id + "'");
+          }
+        default:
+          throw new IllegalArgumentException("unrecognized namespace '" + ns + "' near '" + id + "'");
+      }
+    }
+    return id;
   }
 }

@@ -24,11 +24,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import com.alanjz.spin.config.Spinfile;
 import com.alanjz.spin.config.Spinfiles;
+import com.alanjz.spin.peers.Peer;
 import com.alanjz.spin.util.parser.config.JSONSpinfileParser;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  *
@@ -88,6 +90,8 @@ public class SpinRunner implements Runnable {
    */
   @Override
   public void run() {
+    Spinfile spinfile;
+
     info("starting Spin peer runner...");
     info();
     info("   ____/ ___ \\   /  __  \\");
@@ -106,16 +110,48 @@ public class SpinRunner implements Runnable {
       info("located [%s]", configFile.getAbsolutePath());
       info("parsing Spinfile.json...");
       JSONSpinfileParser parser = new JSONSpinfileParser(configFile);
-      Spinfile spinfile = parser.parse();
-      if(spinfile == null) {
-        fail("cannot parse Spinfile");
-        System.exit(0);
-      }
+      spinfile = parser.parse();
       info("parsed Spinfile.json");
     }
     catch (IOException e) {
       fail(e.getMessage());
       return;
+    }
+    /*
+    {
+  "modelVersion": "1.0",
+  "projectGroup": "default",
+  "projectName": "Spin Project",
+  "projectVersion": "1.0",
+  "peers": [
+    {
+      "id": "crypto::sha1($peerName)",
+      "name": "spin-instance-$id",
+      "contentRoot": ".",
+      "cacheRoot": ".spin",
+      "parallelism": 1,
+      "instances": 4,
+      "port": 9550
+    }
+  ]
+}
+     */
+    info();
+    info("Spinfile:");
+    info("modelVersion <= %s", spinfile.getModelVersion());
+    info("projectGroup <= %s", spinfile.getProjectGroup());
+    info("projectName <= %s", spinfile.getProjectName());
+    info("projectVersion <= %s", spinfile.getProjectVersion());
+    info();
+    for(Peer peer : spinfile.getPeers()) {
+      info("Peer");
+      info("id <= %s", peer.getID());
+      info("name <= %s", peer.getName());
+      info("contentRoot <= %s", peer.getContentRoot());
+      info("cacheRoot <= %s", peer.getCacheRoot());
+      info("parallelism <= %s", peer.getParallelism());
+      info("port <= %s", peer.getPort());
+      info();
     }
     info("starting Spin thread pool...");
     setExecutorService(Executors.newWorkStealingPool());

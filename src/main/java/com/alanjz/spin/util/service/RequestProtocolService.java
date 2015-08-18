@@ -24,7 +24,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import com.alanjz.spin.mpi.request.RequestProtocol;
 
-import javax.management.ServiceNotFoundException;
 import java.lang.reflect.InvocationTargetException;
 
 /**

@@ -5,12 +5,11 @@
   "projectVersion": "1.0",
   "peers": [
     {
-      "id": "crypto::sha1($peerName)",
+      "id": "crypto::sha1($name)",
       "name": "spin-instance-$id",
       "contentRoot": ".",
       "cacheRoot": ".spin",
-      "parallelism": 1,
-      "instances": 4,
+      "parallelism": 2,
       "port": 9550
     }
   ]

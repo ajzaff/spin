@@ -95,11 +95,7 @@ public class Peer {
     return port;
   }
 
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
+  public void setID(String id) {
     this.id = id;
   }
 
