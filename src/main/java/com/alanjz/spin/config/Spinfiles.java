@@ -52,7 +52,7 @@ public final class Spinfiles {
 
       for (String f : files) {
         if (matchesSpinfile(f)) {
-          return new File(f);
+          return new File(fileLocation.getAbsolutePath() + "/" + f);
         }
       }
 

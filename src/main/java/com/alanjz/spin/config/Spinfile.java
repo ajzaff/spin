@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 import com.alanjz.spin.mpi.request.RequestProtocol;
+import com.alanjz.spin.peers.Peer;
 
 import java.util.Set;
 
@@ -42,6 +43,11 @@ public class Spinfile {
   /**
    *
    */
+  protected String modelVersion;
+
+  /**
+   *
+   */
   protected String projectGroup;
 
   /**
@@ -57,7 +63,30 @@ public class Spinfile {
   /**
    *
    */
-  protected int port;
+  protected Peer[] peers;
+
+  /**
+   *
+   * @param modelVersion
+   * @param projectGroup
+   * @param projectName
+   * @param projectVersion
+   */
+  public Spinfile(String modelVersion, String projectGroup, String projectName, String projectVersion, Peer[] peers) {
+    setModelVersion(modelVersion);
+    setProjectGroup(projectGroup);
+    setProjectName(projectName);
+    setProjectVersion(projectVersion);
+    setPeers(peers);
+  }
+
+  /**
+   *
+   * @return
+   */
+  public String getModelVersion() {
+    return modelVersion;
+  }
 
   /**
    *
@@ -85,9 +114,17 @@ public class Spinfile {
 
   /**
    *
+   * @return
+   */
+  public Peer[] getPeers() {
+    return peers;
+  }
+
+  /**
+   *
    * @param projectGroup
    */
-  protected void setProjectGroup(String projectGroup) {
+  public void setProjectGroup(String projectGroup) {
     this.projectGroup = projectGroup;
   }
 
@@ -95,7 +132,7 @@ public class Spinfile {
    *
    * @param projectName
    */
-  protected void setProjectName(String projectName) {
+  public void setProjectName(String projectName) {
     this.projectName = projectName;
   }
 
@@ -103,7 +140,23 @@ public class Spinfile {
    *
    * @param projectVersion
    */
-  protected void setProjectVersion(String projectVersion) {
+  public void setProjectVersion(String projectVersion) {
     this.projectVersion = projectVersion;
+  }
+
+  /**
+   *
+   * @param modelVersion
+   */
+  public void setModelVersion(String modelVersion) {
+    this.modelVersion = modelVersion;
+  }
+
+  /**
+   *
+   * @param peers
+   */
+  public void setPeers(Peer[] peers) {
+    this.peers = peers;
   }
 }

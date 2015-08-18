@@ -22,7 +22,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+import com.alanjz.spin.config.Spinfile;
 import com.alanjz.spin.config.Spinfiles;
+import com.alanjz.spin.util.parser.config.JSONSpinfileParser;
 
 import java.io.File;
 import java.io.IOException;
@@ -95,13 +97,21 @@ public class SpinRunner implements Runnable {
     info();
     try {
       info("loading configuration...");
-      File file = Spinfiles.searchRecursive(new File(System.getProperty("user.dir")));
-      if(file == null) {
+      File configFile = Spinfiles.searchRecursive(new File(System.getProperty("user.dir")));
+      if(configFile == null) {
         fail("Spin runner did not find Spinfile.json in directory tree");
         fail("shutting down...");
         System.exit(0);
       }
-      info("loaded [%s]", file.getAbsolutePath());
+      info("located [%s]", configFile.getAbsolutePath());
+      info("parsing Spinfile.json...");
+      JSONSpinfileParser parser = new JSONSpinfileParser(configFile);
+      Spinfile spinfile = parser.parse();
+      if(spinfile == null) {
+        fail("cannot parse Spinfile");
+        System.exit(0);
+      }
+      info("parsed Spinfile.json");
     }
     catch (IOException e) {
       fail(e.getMessage());

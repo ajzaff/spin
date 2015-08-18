@@ -1,0 +1,17 @@
+{
+  "modelVersion": "1.0",
+  "projectGroup": "default",
+  "projectName": "Spin Project",
+  "projectVersion": "1.0",
+  "peers": [
+    {
+      "id": "crypto::sha1($peerName)",
+      "name": "spin-instance-$id",
+      "contentRoot": ".",
+      "cacheRoot": ".spin",
+      "parallelism": 1,
+      "instances": 4,
+      "port": 9550
+    }
+  ]
+}
