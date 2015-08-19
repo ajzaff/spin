@@ -27,6 +27,7 @@ import com.alanjz.spin.peers.Peer;
 import com.alanjz.spin.util.parser.Parser;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import sun.misc.BASE64Encoder;
 
 import java.io.File;
 import java.io.FileReader;
@@ -138,13 +139,15 @@ public class JSONSpinfileParser implements Parser<Spinfile> {
     String cacheRoot = jsonObject.getString("cacheRoot");
     int parallelism = jsonObject.getInt("parallelism");
     int port = jsonObject.getInt("port");
-    return new Peer(id, port, name, contentRoot, cacheRoot, parallelism);
+    return new Peer(id, port, name, contentRoot, cacheRoot, parallelism, null);
   }
 
   /**
    *
    */
   static Pattern functionPattern = Pattern.compile("(\\w+)::(\\w+)\\((\\$?\\w*)\\)");
+
+  static BASE64Encoder encoder64 = new BASE64Encoder();
 
   static MessageDigest sha1MessageDigest;
 
@@ -158,8 +161,7 @@ public class JSONSpinfileParser implements Parser<Spinfile> {
   }
 
   public String digest64(MessageDigest md, String str) {
-    byte[] bytes = md.digest(str.getBytes());
-    return Base64.getEncoder().encodeToString(bytes);
+    return encoder64.encode(md.digest(str.getBytes()));
   }
 
   /**

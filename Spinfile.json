@@ -10,7 +10,8 @@
       "contentRoot": ".",
       "cacheRoot": ".spin",
       "parallelism": 2,
-      "port": 9550
+      "port": 9550,
+      "handler": "com.alanjz.spin.handler.TestHandler"
     }
   ]
 }

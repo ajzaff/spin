@@ -59,20 +59,29 @@ public class Peer {
 
   /**
    *
+   */
+  protected PeerHandler peerHandler;
+
+  /**
+   *
    * @param id
    * @param port
    * @param name
    * @param contentRoot
    * @param cacheRoot
    * @param parallelism
+   * @param peerHandler
    */
-  public Peer(String id, int port, String name, String contentRoot, String cacheRoot, int parallelism) {
-    this.id = id;
-    this.port = port;
-    this.name = name;
-    this.contentRoot = contentRoot;
-    this.cacheRoot = cacheRoot;
-    this.parallelism = parallelism;
+  public Peer(String id, int port, String name, String contentRoot,
+              String cacheRoot, int parallelism, PeerHandler peerHandler)
+  {
+    setID(id);
+    setPort(port);
+    setName(name);
+    setContentRoot(contentRoot);
+    setCacheRoot(cacheRoot);
+    setParallelism(parallelism);
+    setPeerHandler(peerHandler);
   }
 
   /**
@@ -133,5 +142,13 @@ public class Peer {
 
   public void setParallelism(int parallelism) {
     this.parallelism = parallelism;
+  }
+
+  public PeerHandler getPeerHandler() {
+    return peerHandler;
+  }
+
+  public void setPeerHandler(PeerHandler peerHandler) {
+    this.peerHandler = peerHandler;
   }
 }
