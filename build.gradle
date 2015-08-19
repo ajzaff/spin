@@ -28,7 +28,7 @@ project(':runner') {
     apply plugin: 'application'
     mainClassName = 'com.alanjz.spin.runner.SpinRunner'
     dependencies {
-        compile project(':')
+        compile project(':project')
         testCompile 'junit:junit:4.11'
     }
     jar {
@@ -40,41 +40,27 @@ project(':runner') {
     }
 }
 
-project(':mmap') {
+project(':project') {
     dependencies {
         compile project(':')
         testCompile 'junit:junit:4.11'
     }
     jar {
         manifest {
-            attributes 'Implementation-Title': 'SPIN MMAP'
+            attributes 'Implementation-Title': 'SPIN Project'
         }
-        appendix = 'mmap'
+        appendix = 'project'
     }
 }
 
-project(':http') {
+project(':security') {
     dependencies {
-        compile project(':')
         testCompile 'junit:junit:4.11'
     }
     jar {
         manifest {
-            attributes 'Implementation-Title': 'SPIN HTTP'
+            attributes 'Implementation-Title': 'SPIN Security'
         }
-        appendix = 'http'
-    }
-}
-
-project(':backup') {
-    dependencies {
-        compile project(':')
-        testCompile 'junit:junit:4.11'
-    }
-    jar {
-        manifest {
-            attributes 'Implementation-Title': 'SPIN Backup'
-        }
-        appendix = 'backup'
+        appendix = 'security'
     }
 }

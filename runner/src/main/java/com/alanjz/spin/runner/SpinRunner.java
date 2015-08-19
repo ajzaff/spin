@@ -22,10 +22,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import com.alanjz.spin.config.Spinfile;
-import com.alanjz.spin.config.Spinfiles;
+import com.alanjz.spin.project.Spinfile;
+import com.alanjz.spin.project.Spinfiles;
 import com.alanjz.spin.peers.Peer;
-import com.alanjz.spin.util.parser.config.JSONSpinfileParser;
+import com.alanjz.spin.project.util.JSONSpinfileParser;
 
 import java.io.File;
 import java.io.IOException;
