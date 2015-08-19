@@ -32,6 +32,8 @@ import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import static com.alanjz.spin.util.Logger.*;
+
 /**
  *
  */
@@ -66,27 +68,6 @@ public class SpinRunner implements Runnable {
 
   /**
    *
-   * @param format
-   * @param args
-   */
-  protected void info(String format, Object... args) {
-    System.out.printf("[INFO] " + format + "\n", args);
-  }
-
-  /**
-   *
-   */
-  protected void info() {
-    System.out.printf("[INFO]\n");
-  }
-
-
-  protected void fail(String format, Object... args) {
-    System.err.printf("[FAIL] " + format + "\n", args);
-  }
-
-  /**
-   *
    */
   @Override
   public void run() {
@@ -117,28 +98,6 @@ public class SpinRunner implements Runnable {
       fail(e.getMessage());
       return;
     }
-    /*
-    {
-  "modelVersion": "1.0",
-  "projectGroup": "default",
-  "projectName": "Spin Project",
-  "projectVersion": "1.0",
-  "peers": [
-    {
-      "id": "crypto::sha1($peerName)",
-      "name": "spin-instance-$id",
-      "contentRoot": ".",
-      "cacheRoot": ".spin",
-      "parallelism": 1,
-      "instances": 4,
-      "port": 9550
-    }
-  ]
-}
-     */
-
-
-
 
     info();
     info("Spinfile:");
@@ -169,5 +128,4 @@ public class SpinRunner implements Runnable {
   public static void main(String[] args) throws IOException {
     new SpinRunner().run();
   }
-
 }
