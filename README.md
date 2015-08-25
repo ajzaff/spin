@@ -4,6 +4,6 @@
 
 ## About this project
 
-SPIN is a distributed storage and compute framework. It aims to be one of the first peer-to-peer public cloud providers. Unlike commercial public clouds, SPIN is completely decentralized. It is supported by its own stake-holders on their own hardware, rather than in federated datacenters. SPIN stakeholders donate, or sell small quantities of their compute resources in return for stake in the network.
+SPIN is a Java framework wired for distributed cloud compute and storage. It aims to be one of the foremost frameworks for VPC Peering, aimed at crowdsource computing. SPIN gives you a flexible, decentralized solution for running data projects in the cloud, or on your own hardware.
 
 Visit [spin.alanjz.com](http://spin.alanjz.com) for more information.
